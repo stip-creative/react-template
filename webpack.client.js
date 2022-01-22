@@ -9,26 +9,26 @@ module.exports = (env, argv) => {
     const config = webpackConfig(modeEnv);
 
     return {
-        entry: "./src/index.tsx", // Энтрипоинт-файл, с которого и начнется наша сборка
+        entry: "./src/index.tsx",
         output: {
             filename: watchMode
                 ? "assets/[name].[hash].js"
-                : "assets/[name].[chunkhash].js", // небольшое условие, т.к. WDS не будет работать с chunkhash
-            path: path.resolve(__dirname, "build"), // Весь наш результат складываем в папку dist
+                : "assets/[name].[chunkhash].js",
+            path: path.resolve(__dirname, "build"),
             publicPath: "/public",
-            clean: true, // чистка папки билд
+            clean: true,
         },
         module: {
             rules: [config.modules.js, config.modules.stylus],
         },
         resolve: {
-            extensions: [".tsx", ".ts", ".js"], // разрешения модулей
+            extensions: [".tsx", ".ts", ".js"],
         },
         plugins: [
             new HtmlWebpackPlugin({
-                template: "./public/index.html", // Скармливаем наш HTML-темплейт
+                template: "./public/index.html",
             }),
-            new WebpackNotifierPlugin({ alwaysNotify: false }), // нотификации
+            new WebpackNotifierPlugin({ alwaysNotify: false }),
         ],
     };
 };
