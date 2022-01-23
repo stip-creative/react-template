@@ -4,25 +4,33 @@ const WebpackNotifierPlugin = require("webpack-notifier");
 const webpackConfig = require("./webpack.config");
 
 module.exports = (env, argv) => {
+    // Путь к биду
+    const buildFolderName = "build";
+    const buildPath = path.resolve(__dirname, buildFolderName);
+    // Путь к публичной папке
+    const publicFolderName = "public";
+    const publicPath = path.resolve(__dirname, publicFolderName);
+
     const watchMode = argv.liveReload || false;
     const modeEnv = argv.mode || "development";
     const config = webpackConfig(modeEnv);
 
     return {
+        mode: modeEnv,
         entry: "./src/index.tsx", // Энтрипоинт-файл, с которого и начнется наша сборка
         output: {
             filename: watchMode
                 ? "assets/[name].[hash].js"
                 : "assets/[name].[chunkhash].js", // небольшое условие, т.к. WDS не будет работать с chunkhash
-            path: path.resolve(__dirname, "build"), // Весь наш результат складываем в папку dist
-            publicPath: "/public",
+            path: buildPath, // Весь наш результат складываем в папку dist
+            publicPath: publicPath,
             clean: true, // чистка папки билд
         },
         module: {
             rules: [config.modules.js, config.modules.stylus],
         },
         resolve: {
-            extensions: [".tsx", ".ts", ".js"], // разрешения модулей
+            extensions: [".ts", ".tsx", ".js", ".jsx"], // разрешения модулей
         },
         plugins: [
             new HtmlWebpackPlugin({
@@ -30,5 +38,12 @@ module.exports = (env, argv) => {
             }),
             new WebpackNotifierPlugin({ alwaysNotify: false }), // нотификации
         ],
+        devServer: {
+            static: {
+                directory: buildPath,
+            },
+            port: 3000,
+            open: true,
+        },
     };
 };

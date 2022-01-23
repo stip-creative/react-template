@@ -1,6 +1,8 @@
 import React from "react";
 import { FunctionComponent } from "react";
 
-const App: FunctionComponent = () => <h1>Woohoo!</h1>;
+const App: FunctionComponent = () => {
+    return <h1>Woohooo!</h1>;
+};
 
 export default App;
