@@ -1,9 +1,10 @@
-import React from "react";
-import { FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
+
+import FirstComponents from "./components/FirstComponents";
 import "./styles/reset.scss";
 
 const App: FunctionComponent = () => {
-    return <h1>Woohooo!</h1>;
+    return <FirstComponents />;
 };
 
 export default App;
