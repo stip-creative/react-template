@@ -7,7 +7,7 @@ module.exports = (env) => {
             test: /\.(ts|js)x?$/i,
             exclude: /node_modules/,
             use: {
-                loader: "ts-loader",
+                loader: "babel-loader",
             },
         },
         style: {
