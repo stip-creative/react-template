@@ -23,22 +23,24 @@ module.exports = (env, argv) => {
                 ? "assets/[name].[hash].js"
                 : "assets/[name].[chunkhash].js", // небольшое условие, т.к. WDS не будет работать с chunkhash
             path: buildPath, // Весь наш результат складываем в папку dist
-            publicPath: publicPath,
+            publicPath: "./",
             clean: true, // чистка папки билд
         },
         module: {
-            rules: [config.modules.js, config.modules.stylus],
+            rules: [config.modules.js, config.modules.style],
         },
-        resolve: {
-            extensions: [".ts", ".tsx", ".js", ".jsx"], // разрешения модулей
-        },
+        resolve: config.resolve,
         plugins: [
+            ...config.plugins,
             new HtmlWebpackPlugin({
                 template: "./public/index.html", // Скармливаем наш HTML-темплейт
             }),
             new WebpackNotifierPlugin({ alwaysNotify: false }), // нотификации
         ],
         devServer: {
+            devMiddleware: {
+                writeToDisk: true,
+            },
             static: {
                 directory: buildPath,
             },
