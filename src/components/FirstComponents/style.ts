@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const StyledWrapper = styled.div`
     position: absolute;
     left: 0;
     top: 0;
@@ -13,6 +13,6 @@ export const Wrapper = styled.div`
     align-items: center;
 `;
 
-export const Title = styled.h1`
+export const StyledTitle = styled.h1`
     font-size: 2rem;
 `;

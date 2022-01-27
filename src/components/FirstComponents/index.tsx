@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from "react";
-import { Wrapper, Title } from "./style";
+import { StyledWrapper, StyledTitle } from "./style";
 
 const FirstComponents: FunctionComponent = () => {
     return (
-        <Wrapper>
-            <Title>Woohooo!</Title>
-        </Wrapper>
+        <StyledWrapper>
+            <StyledTitle>Woohooo!</StyledTitle>
+        </StyledWrapper>
     );
 };
 
