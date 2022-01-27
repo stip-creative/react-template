@@ -5,11 +5,10 @@ module.exports = {
         es2021: true,
     },
     extends: [
+        "airbnb",
         "airbnb-typescript",
         "airbnb/hooks",
-        "prettier/react",
-        "prettier/@typescript-eslint",
-        "plugin:testing-library/react",
+        "prettier",
         "plugin:react/recommended",
         "plugin:prettier/recommended",
         "plugin:@typescript-eslint/recommended",
@@ -32,6 +31,7 @@ module.exports = {
     rules: {
         "react-hooks/rules-of-hooks": "error", // Проверяем правила хуков
         "react-hooks/exhaustive-deps": "warn", // Проверяем зависимости эффекта
+        "react/function-component-definition": ["error", { namedComponents: "arrow-function" }],
         "no-use-before-define": "off",
         "@typescript-eslint/no-use-before-define": [
             // проверка на ReferenceError
@@ -70,7 +70,7 @@ module.exports = {
                 endOfLine: "auto",
             },
         ],
-        "comma-dangle": ["error", "always"], // Запятые в конце
+        "comma-dangle": ["error", "always-multiline"], // Запятые в конце
         "eol-last": ["error", "always"], // Новая строка в конце
         "brace-style": "error", // стиль скобок для блоков
         "block-spacing": "error", // Интервал внутри токена закрытого блока и предыдущего токена в той же строке
@@ -86,13 +86,7 @@ module.exports = {
             // Требованиие указывания rule
             "warn",
             {
-                handlers: [
-                    "onClick",
-                    "onMouseUp",
-                    "onKeyPress",
-                    "onKeyDown",
-                    "onKeyUp",
-                ],
+                handlers: ["onClick", "onMouseUp", "onKeyPress", "onKeyDown", "onKeyUp"],
             },
         ],
         "arrow-parens": ["error", "as-needed"], // скобки для аргументов
@@ -120,14 +114,7 @@ module.exports = {
             "error",
             {
                 "newlines-between": "always",
-                groups: [
-                    "builtin",
-                    "external",
-                    "internal",
-                    "parent",
-                    "sibling",
-                    "index",
-                ],
+                groups: ["builtin", "external", "internal", "parent", "sibling", "index"],
             },
         ],
         "import/extensions": [

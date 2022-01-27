@@ -19,9 +19,7 @@ module.exports = (env, argv) => {
         mode: modeEnv,
         entry: "./src/index.tsx", // Энтрипоинт-файл, с которого и начнется наша сборка
         output: {
-            filename: watchMode
-                ? "assets/[name].[hash].js"
-                : "assets/[name].[chunkhash].js", // небольшое условие, т.к. WDS не будет работать с chunkhash
+            filename: watchMode ? "assets/[name].[hash].js" : "assets/[name].[chunkhash].js", // небольшое условие, т.к. WDS не будет работать с chunkhash
             path: buildPath, // Весь наш результат складываем в папку dist
             publicPath: "./",
             clean: true, // чистка папки билд
@@ -40,6 +38,9 @@ module.exports = (env, argv) => {
         devServer: {
             devMiddleware: {
                 writeToDisk: true,
+            },
+            client: {
+                overlay: false,
             },
             static: {
                 directory: buildPath,

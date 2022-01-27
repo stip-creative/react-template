@@ -1,7 +1,8 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ESLintPlugin = require("eslint-webpack-plugin");
 
-module.exports = (env) => {
+module.exports = env => {
     const modules = {
         js: {
             test: /\.(ts|js)x?$/i,
@@ -30,6 +31,10 @@ module.exports = (env) => {
     };
 
     const plugins = [
+        new ESLintPlugin({
+            files: "src/**/*{ts,tsx}", // Файлы для проверки
+            failOnError: false, // Не падать на ошибкахcc
+        }),
         new MiniCssExtractPlugin({
             filename: "[name].css",
             chunkFilename: "[id].css",
