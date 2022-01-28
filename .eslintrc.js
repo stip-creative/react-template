@@ -129,5 +129,6 @@ module.exports = {
             },
         ],
         "no-debugger": "warn",
+        "import/no-cycle": 0,
     },
 };

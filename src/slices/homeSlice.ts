@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppDispatch } from "src/store";
+
+import { AppDispatch } from "../store";
 
 interface IHomeState {
     title: string;
