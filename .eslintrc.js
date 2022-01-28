@@ -70,14 +70,14 @@ module.exports = {
                 endOfLine: "auto",
             },
         ],
-        "comma-dangle": ["error", "always-multiline"], // Запятые в конце
+        "comma-dangle": ["error", "only-multiline"], // Запятые в конце
         "eol-last": ["error", "always"], // Новая строка в конце
         "brace-style": "error", // стиль скобок для блоков
         "block-spacing": "error", // Интервал внутри токена закрытого блока и предыдущего токена в той же строке
         "import/no-named-as-default": 0, // // експорт по умолчаниию
         "jsx-a11y/anchor-is-valid": ["error", { components: ["a"] }], // Настройка ссылки
         "no-underscore-dangle": ["error", { allow: ["__typename"] }], // Запет на __foo
-        "no-param-reassign": 2,
+        "no-param-reassign": 0,
         "no-return-await": 0,
         "no-console": ["warn", { allow: ["warn", "error"] }],
         "no-plusplus": 0,
@@ -128,5 +128,6 @@ module.exports = {
                 tsx: "never",
             },
         ],
+        "no-debugger": "warn",
     },
 };
