@@ -17,7 +17,7 @@ module.exports = (env, argv) => {
 
     return {
         mode: modeEnv,
-        entry: "./src/index.tsx", // Энтрипоинт-файл, с которого и начнется наша сборка
+        entry: ["@babel/polyfill", "./src/index.tsx"], // Энтрипоинт-файл, с которого и начнется наша сборка
         output: {
             filename: watchMode ? "assets/[name].[hash].js" : "assets/[name].[chunkhash].js", // небольшое условие, т.к. WDS не будет работать с chunkhash
             path: buildPath, // Весь наш результат складываем в папку dist
@@ -25,7 +25,7 @@ module.exports = (env, argv) => {
             clean: true, // чистка папки билд
         },
         module: {
-            rules: [config.modules.js, config.modules.style],
+            rules: [config.modules.js, config.modules.style, config.modules.graphql],
         },
         resolve: config.resolve,
         plugins: [
