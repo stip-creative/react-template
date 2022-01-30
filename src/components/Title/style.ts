@@ -6,6 +6,7 @@ export const StyledWrapper = styled.div`
     top: 0;
     right: 0;
     bottom: 0;
+    z-index: 1;
 
     display: flex;
     align-content: center;

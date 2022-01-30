@@ -6,7 +6,7 @@ import { RootState } from "../../store";
 
 import { StyledWrapper, StyledTitle } from "./style";
 
-const FirstComponents: FunctionComponent = () => {
+const Title: FunctionComponent = () => {
     const dispatch = useDispatch();
     const title = useSelector((state: RootState) => state.home.title);
 
@@ -19,4 +19,4 @@ const FirstComponents: FunctionComponent = () => {
     );
 };
 
-export default FirstComponents;
+export default Title;
