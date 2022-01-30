@@ -28,6 +28,11 @@ module.exports = env => {
                 },
             ],
         },
+        glsl: {
+            test: /\.glsl$/,
+            exclude: /node_modules/,
+            use: ["raw-loader", "glslify-loader"],
+        },
     };
 
     const plugins = [
@@ -42,7 +47,7 @@ module.exports = env => {
     ];
 
     const resolve = {
-        extensions: [".ts", ".tsx", ".js", ".jsx"],
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".glsl"],
     };
 
     return {

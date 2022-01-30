@@ -25,7 +25,7 @@ module.exports = (env, argv) => {
             clean: true, // чистка папки билд
         },
         module: {
-            rules: [config.modules.js, config.modules.style],
+            rules: [config.modules.js, config.modules.style, config.modules.glsl],
         },
         resolve: config.resolve,
         plugins: [
