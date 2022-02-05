@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledCanvasWrapper = styled.div`
+const StyledCanvasWrapper = styled.div`
     position: absolute;
     top: 0;
     right: 0;
@@ -10,3 +10,5 @@ export const StyledCanvasWrapper = styled.div`
     z-index: 0;
     pointer-events: none;
 `;
+
+export default StyledCanvasWrapper;

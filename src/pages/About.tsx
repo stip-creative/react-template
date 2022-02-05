@@ -1,9 +1,8 @@
 import React, { FunctionComponent } from "react";
 
-import Animated3DSphere from "../components/Animated3DSphere";
 import Title from "../components/Title";
 
-const Home: FunctionComponent = () => {
+const About: FunctionComponent = () => {
     return (
         <div
             style={{
@@ -13,9 +12,8 @@ const Home: FunctionComponent = () => {
             }}
         >
             <Title />
-            <Animated3DSphere />
         </div>
     );
 };
 
-export default Home;
+export default About;

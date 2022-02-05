@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Icosahedron } from "@react-three/drei";
 
-import { StyledCanvasWrapper } from "./style";
+import StyledCanvasWrapper from "./style";
 
 const Blob: FunctionComponent<{ size: number }> = ({ size }) => {
     return (
