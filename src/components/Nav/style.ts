@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const StyledNavWrapper = styled.div`
+    position: fixed;
+    width: 100%;
     display: flex;
     height: 60px;
     flex-direction: row;
@@ -10,6 +12,8 @@ export const StyledNavWrapper = styled.div`
     justify-content: center;
     align-items: center;
     background-color: var(--bg);
+
+    z-index: 1;
 `;
 
 export const StyledLink = styled(Link)`

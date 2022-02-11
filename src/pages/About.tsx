@@ -22,6 +22,26 @@ const About: FunctionComponent = () => {
         <Page>
             <SEO seo={demoSeo} defaultSeo={demoSeo} />
             <Title title="About" />
+            <Title title="About" />
+            <Title title="About" />
+            <Title title="About" />
+            <Title title="About" />
+            <Title title="About" />
+            <Title title="About" />
+            <Title title="About" />
+            <Title title="About" />
+            <Title title="About" />
+            <Title title="About" />
+            <Title title="About" />
+            <Title title="About" />
+            <Title title="About" />
+            <Title title="About" />
+            <Title title="About" />
+            <Title title="About" />
+            <Title title="About" />
+            <Title title="About" />
+            <Title title="About" />
+            <Title title="About" />
         </Page>
     );
 };
