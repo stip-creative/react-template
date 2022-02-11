@@ -4,6 +4,7 @@ import SEO from "../components/Seo";
 import Title from "../components/Title";
 import ISeo from "../models/ISeo";
 import favicon from "../../public/favicon-16x16.png";
+import Page from "../components/Page";
 
 const demoSeo: ISeo = {
     metaTitle: "HOME",
@@ -18,17 +19,10 @@ const demoSeo: ISeo = {
 
 const Home: FunctionComponent = () => {
     return (
-        <div
-            style={{
-                position: "relative",
-                width: "100%",
-                height: "100vh",
-            }}
-        >
+        <Page>
             <SEO seo={demoSeo} defaultSeo={demoSeo} />
-            <Title />
-            {/* <Animated3DSphere /> */}
-        </div>
+            <Title title="home" />
+        </Page>
     );
 };
 

@@ -1,18 +1,17 @@
 import React, { FunctionComponent } from "react";
 
 import Nav from "./components/Nav";
-import PageTransition from "./components/PageTransition";
 import Routes from "./routes/Routes";
+import GlobalStyles from "./styles/globalStyles";
 
 import "./styles/reset.scss";
 
 const App: FunctionComponent = () => {
     return (
         <>
+            <GlobalStyles />
             <Nav />
-            <PageTransition>
-                <Routes />
-            </PageTransition>
+            <Routes />
         </>
     );
 };

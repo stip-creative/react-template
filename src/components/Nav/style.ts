@@ -9,7 +9,7 @@ export const StyledNavWrapper = styled.div`
     align-content: center;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    background-color: var(--bg);
 `;
 
 export const StyledLink = styled(Link)`
