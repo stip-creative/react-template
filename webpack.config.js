@@ -33,6 +33,10 @@ module.exports = env => {
             exclude: /node_modules/,
             use: ["raw-loader", "glslify-loader"],
         },
+        files: {
+            test: /\.(png|svg|jpg|jpeg|gif)$/i,
+            type: "asset/resource",
+        },
     };
 
     const plugins = [
@@ -47,7 +51,7 @@ module.exports = env => {
     ];
 
     const resolve = {
-        extensions: [".ts", ".tsx", ".js", ".jsx", ".glsl"],
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".glsl", ".jpg", ".png", ".svg"],
     };
 
     return {
