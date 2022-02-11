@@ -8,5 +8,6 @@ export const StyledWrapper = styled.div`
 `;
 
 export const StyledTitle = styled.h1`
-    font-size: 2rem;
+    font-family: "Kenoky";
+    font-size: 6rem;
 `;

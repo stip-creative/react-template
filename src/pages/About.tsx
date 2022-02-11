@@ -21,7 +21,7 @@ const About: FunctionComponent = () => {
     return (
         <Page>
             <SEO seo={demoSeo} defaultSeo={demoSeo} />
-            <Title title="about" />
+            <Title title="About" />
         </Page>
     );
 };

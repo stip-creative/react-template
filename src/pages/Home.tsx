@@ -21,7 +21,7 @@ const Home: FunctionComponent = () => {
     return (
         <Page>
             <SEO seo={demoSeo} defaultSeo={demoSeo} />
-            <Title title="home" />
+            <Title title="Home" />
         </Page>
     );
 };
