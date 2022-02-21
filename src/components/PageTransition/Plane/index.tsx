@@ -33,11 +33,11 @@ const Plane: FunctionComponent<IPlane> = ({ planeStatus }) => {
         if (mesh && material) {
             switch (planeStatus) {
                 case PlaneStatus.goIn:
-                    mesh.position.y = lerp(mesh.position.y, 0, 0.1);
+                    mesh.position.y = lerp(mesh.position.y, 0, 0.08);
                     material.uniforms.u_shift.value = lerp(material.uniforms.u_shift.value, (mesh.position.y - meshPositionY) / 120, 0.1);
                     break;
                 case PlaneStatus.goOut:
-                    mesh.position.y = lerp(mesh.position.y, viewport.height * 1.1, 0.1);
+                    mesh.position.y = lerp(mesh.position.y, viewport.height * 1.1, 0.08);
                     material.uniforms.u_shift.value = lerp(material.uniforms.u_shift.value, (meshPositionY - mesh.position.y) / 120, 0.1);
                     break;
                 default:

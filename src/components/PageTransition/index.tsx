@@ -15,7 +15,7 @@ const PageTransition: FunctionComponent<PropsWithChildren<Record<never, never>>>
             <Transition
                 key={location.pathname}
                 timeout={1000}
-                onEnter={node => {
+                onEnter={() => {
                     // debugger;
                     setPlaneStatus(PlaneStatus.goIn);
                 }}
