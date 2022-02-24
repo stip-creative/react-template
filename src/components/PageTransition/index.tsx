@@ -2,31 +2,31 @@ import React, { FunctionComponent, PropsWithChildren, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { TransitionGroup, Transition } from "react-transition-group";
 
-import PlaneStatus from "../../models/PlaneStatus";
+import PageTransitionStatus from "../../models/PageTransitionStatus";
 
 import Canvas from "./Canvas";
+import TransitionTitle from "./TransitionTitle";
 
 const PageTransition: FunctionComponent<PropsWithChildren<Record<never, never>>> = ({ children }) => {
     const location = useLocation();
-    const [planeStatus, setPlaneStatus] = useState<PlaneStatus>(PlaneStatus.waiting);
+    const [transitionStatus, setTransitionStatus] = useState<PageTransitionStatus>(PageTransitionStatus.waiting);
+
+    const handleEnter = () => {
+        setTransitionStatus(PageTransitionStatus.goIn);
+    };
+
+    const handleExited = () => {
+        setTransitionStatus(PageTransitionStatus.goOut);
+        setTimeout(() => setTransitionStatus(PageTransitionStatus.waiting), 700);
+    };
 
     return (
         <TransitionGroup component={null}>
-            <Transition
-                key={location.pathname}
-                timeout={1000}
-                onEnter={() => {
-                    // debugger;
-                    setPlaneStatus(PlaneStatus.goIn);
-                }}
-                onExited={() => {
-                    setPlaneStatus(PlaneStatus.goOut);
-                    setTimeout(() => setPlaneStatus(PlaneStatus.waiting), 700);
-                }}
-            >
+            <Transition key={location.pathname} timeout={1000} onEnter={handleEnter}>
                 {children}
             </Transition>
-            <Canvas planeStatus={planeStatus} />
+            <Canvas planeStatus={transitionStatus} />
+            <TransitionTitle callBack={handleExited} text="test test" transitionStatus={transitionStatus} />
         </TransitionGroup>
     );
 };

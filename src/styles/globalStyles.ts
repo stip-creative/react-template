@@ -18,7 +18,7 @@ const GlobalStyles = createGlobalStyle`
     body {
         --bg: ${colors.black};
         --text: ${colors.lightYellow};
-
+        --preloaderText: ${colors.brown};
         background-color: var(--bg);
         color: var(--text);
     }

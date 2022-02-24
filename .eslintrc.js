@@ -32,6 +32,8 @@ module.exports = {
         "react-hooks/rules-of-hooks": "error", // Проверяем правила хуков
         "react-hooks/exhaustive-deps": "warn", // Проверяем зависимости эффекта
         "react/function-component-definition": ["error", { namedComponents: "arrow-function" }],
+        "react/display-name": "off",
+        "react/prop-types": "off",
         "no-use-before-define": "off",
         "@typescript-eslint/no-use-before-define": [
             // проверка на ReferenceError

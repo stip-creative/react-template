@@ -1,17 +1,17 @@
 import React, { FunctionComponent, useMemo, useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 
-import PlaneStatus from "../../../models/PlaneStatus";
+import PageTransitionStatus from "../../../models/PageTransitionStatus";
 import lerp from "../../../utils/lerp";
 
 import fragmentShader from "./shaders/fragment.glsl";
 import vertexShader from "./shaders/vertex.glsl";
 
 export interface IPlane {
-    planeStatus: PlaneStatus;
+    transitionStatus: PageTransitionStatus;
 }
 
-const Plane: FunctionComponent<IPlane> = ({ planeStatus }) => {
+const Plane: FunctionComponent<IPlane> = ({ transitionStatus }) => {
     const { viewport } = useThree();
     const meshRef = useRef<THREE.Mesh>();
     const meshPositionYRef = useRef<number>();
@@ -31,12 +31,12 @@ const Plane: FunctionComponent<IPlane> = ({ planeStatus }) => {
         meshPositionY = mesh.position.y;
 
         if (mesh && material) {
-            switch (planeStatus) {
-                case PlaneStatus.goIn:
+            switch (transitionStatus) {
+                case PageTransitionStatus.goIn:
                     mesh.position.y = lerp(mesh.position.y, 0, 0.08);
                     material.uniforms.u_shift.value = lerp(material.uniforms.u_shift.value, (mesh.position.y - meshPositionY) / 120, 0.1);
                     break;
-                case PlaneStatus.goOut:
+                case PageTransitionStatus.goOut:
                     mesh.position.y = lerp(mesh.position.y, viewport.height * 1.1, 0.08);
                     material.uniforms.u_shift.value = lerp(material.uniforms.u_shift.value, (meshPositionY - mesh.position.y) / 120, 0.1);
                     break;
