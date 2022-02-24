@@ -1,13 +1,24 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+import ISeo from "../models/ISeo";
+import favicon from "../../public/favicon-16x16.png";
 import { AppDispatch } from "../store";
 
 interface IHomeState {
-    title: string;
+    seo: ISeo;
 }
 
 const initialState: IHomeState = {
-    title: "Woohooo!",
+    seo: {
+        metaTitle: "HOME",
+        metaDescription: "HOME",
+        shareImage: {
+            url: favicon,
+        },
+        favicon: {
+            url: favicon,
+        },
+    },
 };
 
 export const homeSlice = createSlice({
@@ -17,7 +28,7 @@ export const homeSlice = createSlice({
     reducers: {
         // Используйте тип 'PayloadAction' для объявления содержимого 'action.payload'.
         setTitle: (state, action: PayloadAction<string>) => {
-            state.title = action.payload;
+            state.seo.metaTitle = action.payload;
         },
     },
 });

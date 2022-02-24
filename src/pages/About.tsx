@@ -1,26 +1,17 @@
 import React, { FunctionComponent } from "react";
+import { useSelector } from "react-redux";
 
 import SEO from "../components/Seo";
 import Title from "../components/Title";
-import ISeo from "../models/ISeo";
-import favicon from "../../public/favicon-16x16.png";
 import Page from "../components/Page";
-
-const demoSeo: ISeo = {
-    metaTitle: "ABOUT",
-    metaDescription: "ABOUT",
-    shareImage: {
-        url: favicon,
-    },
-    favicon: {
-        url: favicon,
-    },
-};
+import { RootState } from "../store";
 
 const About: FunctionComponent = () => {
+    const seo = useSelector((state: RootState) => state.about.seo);
+
     return (
         <Page>
-            <SEO seo={demoSeo} defaultSeo={demoSeo} />
+            <SEO seo={seo} defaultSeo={seo} />
             <Title title="About" />
             <Title title="About" />
             <Title title="About" />
