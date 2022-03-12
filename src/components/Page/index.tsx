@@ -1,6 +1,7 @@
 import React, { FunctionComponent, PropsWithChildren, useRef } from "react";
 
 import useCustomScroll from "../../hooks/useCustomScroll";
+import BackCanvas from "../MultiPageCanvas/BackCanvas";
 
 import StyledPageWrapper from "./style";
 
@@ -9,7 +10,12 @@ const Page: FunctionComponent<PropsWithChildren<Record<never, never>>> = ({ chil
 
     useCustomScroll(scrollableRef);
 
-    return <StyledPageWrapper ref={scrollableRef}>{children}</StyledPageWrapper>;
+    return (
+        <StyledPageWrapper ref={scrollableRef}>
+            <BackCanvas />
+            {children}
+        </StyledPageWrapper>
+    );
 };
 
 export default Page;

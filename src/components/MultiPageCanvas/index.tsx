@@ -1,15 +1,9 @@
 import React, { FunctionComponent } from "react";
 
-import BackCanvas from "./BackCanvas";
 import FrontCanvas from "./FrontCanvas";
 
 const MultiPageCanvas: FunctionComponent = () => {
-    return (
-        <>
-            <BackCanvas />
-            <FrontCanvas />
-        </>
-    );
+    return <FrontCanvas />;
 };
 
 export default MultiPageCanvas;
