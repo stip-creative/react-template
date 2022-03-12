@@ -1,17 +1,17 @@
 import React, { FunctionComponent, useMemo, useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 
-import PageTransitionStatus from "../../../models/PageTransitionStatus";
-import lerp from "../../../utils/lerp";
+import PageTransitionStatus from "../../../../models/PageTransitionStatus";
+import lerp from "../../../../utils/lerp";
 
 import fragmentShader from "./shaders/fragment.glsl";
 import vertexShader from "./shaders/vertex.glsl";
 
-export interface IPlane {
+export interface IPageTransitionPlane {
     transitionStatus: PageTransitionStatus;
 }
 
-const Plane: FunctionComponent<IPlane> = ({ transitionStatus }) => {
+const PageTransitionPlane: FunctionComponent<IPageTransitionPlane> = ({ transitionStatus }) => {
     const { viewport } = useThree();
     const meshRef = useRef<THREE.Mesh>();
     const meshPositionYRef = useRef<number>();
@@ -54,4 +54,4 @@ const Plane: FunctionComponent<IPlane> = ({ transitionStatus }) => {
     );
 };
 
-export default Plane;
+export default PageTransitionPlane;
