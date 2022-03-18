@@ -16,7 +16,7 @@ const BackCanvas: FunctionComponent = () => {
     const [isHomePage, setIsHomePage] = useState(location.pathname === "/");
 
     useEffect(() => {
-        setIsHomePage(location.pathname === "/");
+        setTimeout(() => setIsHomePage(location.pathname === "/"), 1300);
     }, [location.pathname]);
 
     return (

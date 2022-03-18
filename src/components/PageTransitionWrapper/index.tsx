@@ -7,7 +7,7 @@ const PageTransition: FunctionComponent<PropsWithChildren<Record<never, never>>>
 
     return (
         <TransitionGroup component={null}>
-            <Transition key={location.pathname} timeout={1000}>
+            <Transition key={location.pathname} timeout={2000}>
                 {children}
             </Transition>
         </TransitionGroup>

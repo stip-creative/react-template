@@ -1,8 +1,10 @@
 import { Canvas as ReactThreeCanvas } from "@react-three/fiber";
-import React, { FunctionComponent, Suspense, useEffect, useRef, useState } from "react";
+import React, { FunctionComponent, Suspense, useCallback, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 
 import PageTransitionStatus from "../../../models/PageTransitionStatus";
+import { RootState } from "../../../store";
 import PageTransitionTitle from "../../PageTransitionTitle";
 
 import PageTransitionPlane from "./PageTransitionPlane";
@@ -13,23 +15,27 @@ export interface ICanvas {
 }
 
 const FrontCanvas: FunctionComponent = () => {
+    const timeLine = useSelector((state: RootState) => state.pageTransition.timeLine);
     const location = useLocation();
     const [transitionStatus, setTransitionStatus] = useState<PageTransitionStatus>(PageTransitionStatus.waiting);
-    const isHomePage = useRef(false);
 
     const handleEnter = () => {
         setTransitionStatus(PageTransitionStatus.goIn);
     };
 
-    const handleExited = () => {
-        isHomePage.current = location.pathname === "/";
+    const handleExited = useCallback(() => {
         setTransitionStatus(PageTransitionStatus.goOut);
         setTimeout(() => setTransitionStatus(PageTransitionStatus.waiting), 700);
-    };
+    }, []);
 
     useEffect(() => {
-        handleEnter();
-    }, [location.pathname]);
+        timeLine.restart();
+    }, [location.pathname, timeLine]);
+
+    useEffect(() => {
+        timeLine.add(handleEnter, 1);
+        timeLine.add(handleExited, 4);
+    }, [handleExited, timeLine]);
 
     return (
         <StyledCanvasWrapper>
@@ -38,7 +44,7 @@ const FrontCanvas: FunctionComponent = () => {
                     <PageTransitionPlane transitionStatus={transitionStatus} />
                 </Suspense>
             </ReactThreeCanvas>
-            <PageTransitionTitle callBack={handleExited} location={location} transitionStatus={transitionStatus} />
+            <PageTransitionTitle location={location} />
         </StyledCanvasWrapper>
     );
 };

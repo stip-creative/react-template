@@ -1,39 +1,36 @@
 import React, { FunctionComponent, useEffect, useRef, useState } from "react";
-import gsap from "gsap";
 import { useSelector } from "react-redux";
 import { Location } from "react-router";
 
-import PageTransitionStatus from "../../models/PageTransitionStatus";
 import { RootState } from "../../store";
 
 import { StyledWrapper, StyledTitle } from "./style";
 
 export interface ITitle {
     location: Location;
-    transitionStatus: PageTransitionStatus;
-    callBack: () => void;
 }
 
-const TransitionTitle: FunctionComponent<ITitle> = ({ location, transitionStatus, callBack }) => {
+const TransitionTitle: FunctionComponent<ITitle> = ({ location }) => {
     const aboutMetaTitle = useSelector((state: RootState) => state.about.seo.metaTitle);
     const homeMetaTitle = useSelector((state: RootState) => state.home.seo.metaTitle);
-
+    const timeLine = useSelector((state: RootState) => state.pageTransition.timeLine);
     const [text, setText] = useState<string>(homeMetaTitle);
 
     const lettersArray = text.split("");
     const titleRef = useRef<HTMLHeadingElement>();
-    const [tl] = useState(() => gsap.timeline());
 
     useEffect(() => {
-        const title = titleRef.current;
+        const showText = timeLine.getById("showText");
+        const hideText = timeLine.getById("hideText");
 
-        if (!title) return;
-
-        if (transitionStatus === PageTransitionStatus.goIn) {
-            tl.to(title.children, { opacity: 1, stagger: 0.1 });
-            tl.to(title.children, { opacity: 0, stagger: 0.1, delay: 1, onComplete: callBack });
+        if (showText && hideText) {
+            timeLine.remove(showText);
+            timeLine.remove(hideText);
         }
-    }, [callBack, tl, transitionStatus]);
+
+        timeLine.to("#title span", { id: "showText", opacity: 1, stagger: 0.1 }, 2);
+        timeLine.to("#title span", { id: "hideText", opacity: 0, stagger: 0.1 }, 3);
+    }, [text, timeLine]);
 
     useEffect(() => {
         switch (location.pathname) {
@@ -50,7 +47,7 @@ const TransitionTitle: FunctionComponent<ITitle> = ({ location, transitionStatus
 
     return (
         <StyledWrapper>
-            <StyledTitle ref={titleRef}>
+            <StyledTitle id="title" ref={titleRef}>
                 {lettersArray.map(letter => (
                     <span key={letter}>{letter}</span>
                 ))}
