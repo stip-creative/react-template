@@ -2,7 +2,6 @@ import React, { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 
 import SEO from "../components/Seo";
-import Title from "../components/Title";
 import Page from "../components/Page";
 import { RootState } from "../store";
 
@@ -12,7 +11,6 @@ const Home: FunctionComponent = () => {
     return (
         <Page>
             <SEO seo={seo} defaultSeo={seo} />
-            <Title title="Home" />
         </Page>
     );
 };

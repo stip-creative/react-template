@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from "react";
 
-import Nav from "./components/Nav";
 import Routes from "./routes/Routes";
 import GlobalStyles from "./styles/globalStyles";
 
@@ -10,7 +9,7 @@ const App: FunctionComponent = () => {
     return (
         <>
             <GlobalStyles />
-            <Nav />
+            {/* <Nav /> */}
             <Routes />
         </>
     );
