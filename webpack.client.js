@@ -4,10 +4,8 @@ const WebpackNotifierPlugin = require("webpack-notifier");
 const webpackConfig = require("./webpack.config");
 
 module.exports = (env, argv) => {
-    // Путь к биду
     const buildFolderName = "build";
     const buildPath = path.resolve(__dirname, buildFolderName);
-    // Путь к публичной папке
 
     const watchMode = argv.liveReload || false;
     const modeEnv = argv.mode || "development";
@@ -15,12 +13,12 @@ module.exports = (env, argv) => {
 
     return {
         mode: modeEnv,
-        entry: ["@babel/polyfill", "./src/index.tsx"], // Энтрипоинт-файл, с которого и начнется наша сборка
+        entry: ["@babel/polyfill", "./src/index.tsx"],
         output: {
-            filename: watchMode ? "assets/[name].[hash].js" : "assets/[name].[chunkhash].js", // небольшое условие, т.к. WDS не будет работать с chunkhash
-            path: buildPath, // Весь наш результат складываем в папку dist
+            filename: watchMode ? "assets/[name].[hash].js" : "assets/[name].[chunkhash].js",
+            path: buildPath,
             publicPath: "./",
-            clean: true, // чистка папки билд
+            clean: true,
         },
         module: {
             rules: [config.modules.js, config.modules.style, config.modules.glsl, config.modules.files, config.modules.fonts],
@@ -29,9 +27,9 @@ module.exports = (env, argv) => {
         plugins: [
             ...config.plugins,
             new HtmlWebpackPlugin({
-                template: "./public/index.html", // Скармливаем наш HTML-темплейт
+                template: "./public/index.html",
             }),
-            new WebpackNotifierPlugin({ alwaysNotify: false }), // нотификации
+            new WebpackNotifierPlugin({ alwaysNotify: false }),
         ],
         devServer: {
             devMiddleware: {

@@ -14,15 +14,12 @@ module.exports = env => {
         style: {
             test: /\.(sa|sc|c)ss$/,
             use: [
-                // Создает узлы `style` из строк JS
                 {
                     loader: "style-loader",
                 },
-                // Переводит CSS в CommonJS
                 {
                     loader: "css-loader",
                 },
-                // SASS в CSS
                 {
                     loader: "sass-loader",
                 },
@@ -45,8 +42,8 @@ module.exports = env => {
 
     const plugins = [
         new ESLintPlugin({
-            files: "src/**/*{ts,tsx}", // Файлы для проверки
-            failOnError: false, // Не падать на ошибкахcc
+            files: "src/**/*{ts,tsx}",
+            failOnError: false,
         }),
         new MiniCssExtractPlugin({
             filename: "[name].css",

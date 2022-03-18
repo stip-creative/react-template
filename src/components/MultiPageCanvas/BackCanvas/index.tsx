@@ -23,7 +23,6 @@ const BackCanvas: FunctionComponent = () => {
         <StyledCanvasWrapper>
             <ReactThreeCanvas orthographic>
                 <Suspense fallback={null}>
-                    {/* // todo: set loader */}
                     <ambientLight intensity={0.5} />
                     <spotLight position={[10, 10, 10]} angle={0.15} />
                     <pointLight position={[-10, -10, -10]} />

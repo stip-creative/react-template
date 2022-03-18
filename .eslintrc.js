@@ -19,7 +19,6 @@ module.exports = {
     plugins: ["react-hooks", "@typescript-eslint", "prettier"],
     parser: "@typescript-eslint/parser",
     parserOptions: {
-        // указывает, какие параметры языка JS вы хотите поддерживать
         ecmaFeatures: {
             jsx: true,
         },
@@ -29,24 +28,19 @@ module.exports = {
     },
     plugins: ["react", "@typescript-eslint"],
     rules: {
-        "react-hooks/rules-of-hooks": "error", // Проверяем правила хуков
-        "react-hooks/exhaustive-deps": "warn", // Проверяем зависимости эффекта
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
         "react/function-component-definition": ["error", { namedComponents: "arrow-function" }],
         "react/display-name": "off",
         "react/prop-types": "off",
         "no-use-before-define": "off",
-        "@typescript-eslint/no-use-before-define": [
-            // проверка на ReferenceError
-            "error",
-            { functions: false },
-        ],
+        "@typescript-eslint/no-use-before-define": ["error", { functions: false }],
         "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": "error", // Проверяем неиспользуемые переменные
+        "@typescript-eslint/no-unused-vars": "error",
         "class-methods-use-this": 0,
-        "@typescript-eslint/no-shadow": "error", // Проверяем теневое копирование
-        "@typescript-eslint/ban-ts-comment": "off", // Разрешаем TS комментарии
+        "@typescript-eslint/no-shadow": "error",
+        "@typescript-eslint/ban-ts-comment": "off",
         "@typescript-eslint/naming-convention": [
-            // Нейминг
             "warn",
             {
                 selector: "interface",
@@ -58,40 +52,38 @@ module.exports = {
             },
         ],
         "@typescript-eslint/typedef": [
-            // Применяем анотации
             "error",
             {
-                arrowParameter: false, // Для стрелочных функций убираем
-                variableDeclaration: false, // Для переменных убираем
+                arrowParameter: false,
+                variableDeclaration: false,
             },
         ],
-        "@typescript-eslint/dot-notation": 1, // Заприщаем foo["bar"]
+        "@typescript-eslint/dot-notation": 1,
         "prettier/prettier": [
             "error",
             {
                 endOfLine: "auto",
             },
         ],
-        "comma-dangle": ["error", "only-multiline"], // Запятые в конце
-        "eol-last": ["error", "always"], // Новая строка в конце
-        "brace-style": "error", // стиль скобок для блоков
-        "block-spacing": "error", // Интервал внутри токена закрытого блока и предыдущего токена в той же строке
-        "import/no-named-as-default": 0, // // експорт по умолчаниию
-        "jsx-a11y/anchor-is-valid": ["error", { components: ["a"] }], // Настройка ссылки
-        "no-underscore-dangle": ["error", { allow: ["__typename"] }], // Запет на __foo
+        "comma-dangle": ["error", "only-multiline"],
+        "eol-last": ["error", "always"],
+        "brace-style": "error",
+        "block-spacing": "error",
+        "import/no-named-as-default": 0,
+        "jsx-a11y/anchor-is-valid": ["error", { components: ["a"] }],
+        "no-underscore-dangle": ["error", { allow: ["__typename"] }],
         "no-param-reassign": 0,
         "no-return-await": 0,
         "no-console": ["warn", { allow: ["warn", "error"] }],
         "no-plusplus": 0,
         "no-shadow": 0,
         "jsx-a11y/no-static-element-interactions": [
-            // Требованиие указывания rule
             "warn",
             {
                 handlers: ["onClick", "onMouseUp", "onKeyPress", "onKeyDown", "onKeyUp"],
             },
         ],
-        "arrow-parens": ["error", "as-needed"], // скобки для аргументов
+        "arrow-parens": ["error", "as-needed"],
         "jsx-a11y/label-has-associated-control": [
             2,
             {
@@ -101,7 +93,6 @@ module.exports = {
             },
         ],
         "padding-line-between-statements": [
-            // Пустые строки
             "error",
             { blankLine: "always", prev: ["const", "let", "var"], next: "*" },
             {
@@ -110,9 +101,8 @@ module.exports = {
                 next: ["const", "let", "var"],
             },
         ],
-        "newline-before-return": ["error"], // Пустая строка перед return
+        "newline-before-return": ["error"],
         "import/order": [
-            // Порядок импорта
             "error",
             {
                 "newlines-between": "always",
@@ -120,7 +110,6 @@ module.exports = {
             },
         ],
         "import/extensions": [
-            // Не использовать форматы в импорте
             "error",
             "ignorePackages",
             {

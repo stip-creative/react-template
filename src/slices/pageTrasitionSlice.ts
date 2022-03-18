@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import gsap from "gsap";
 
-// import { AppDispatch } from "../store";
-
 interface IPageTransitionState {
     timer: number;
     timeLine: gsap.core.Timeline;
