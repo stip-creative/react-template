@@ -6,11 +6,14 @@
   "author": "VanishMax",
   "license": "MIT",
   "scripts": {
-    "start": "npm run pack && npm run startProd",
-    "startProd": "NODE_ENV=production node index.js",
-    "pack": "webpack --mode production --config webpack.config.js",
-    "startDev": "npm run packDev && node index.js",
-    "packDev": "webpack --mode development --config webpack.config.js"
+    "client:start": "webpack-dev-server --config webpack.client.js --mode development",
+    "client:build": "webpack --config webpack.client.js --mode production",
+    "client:build:dev": "webpack --config webpack.client.js --mode development",
+    "client:lint": "eslint \"src/**/*{ts,tsx}\"",
+    "client:lint:fix": "eslint --cache --fix \"src/**/*{ts,tsx}\"",
+    "server": "nodemon index.js",
+    "start": "node index.js",
+    "build": "yarn install"
   },
   "dependencies": {
     "@babel/cli": "^7.1.5",
