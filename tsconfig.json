@@ -8,6 +8,10 @@
         "noImplicitAny": true,
         "esModuleInterop": true,
         "baseUrl": "./",
+        "lib": [
+          "ES2021.String",
+          "dom"
+        ]
     },
     "exclude": [
         "node_modules"
