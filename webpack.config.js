@@ -1,8 +1,9 @@
 const path = require("path");
+
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ESLintPlugin = require("eslint-webpack-plugin");
 
-module.exports = (env) => {
+module.exports = env => {
     const modules = {
         js: {
             test: /\.(ts|js)x?$/i,
@@ -72,16 +73,7 @@ module.exports = (env) => {
     ];
 
     const resolve = {
-        extensions: [
-            ".ts",
-            ".tsx",
-            ".js",
-            ".jsx",
-            ".glsl",
-            ".jpg",
-            ".png",
-            ".svg",
-        ],
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".glsl", ".jpg", ".png", ".svg"],
     };
 
     return {

@@ -1,8 +1,8 @@
-// HTML-шаблон
-export default function template(helmet, content = "") {
-    const scripts = `<script src="/client.js"></script>`;
+const pretty = require("pretty");
 
-    const page = `<!DOCTYPE html>
+// HTML-шаблон
+export default function template(helmet, content = "", bundles) {
+    const page = `
               <html lang="en">
               <head>
                 ${helmet.title.toString()}
@@ -17,12 +17,11 @@ export default function template(helmet, content = "") {
               </head>
               <body>
                 <div class="content">
-                   <div id="app" class="wrap-inner">
-                      <!--- magic happens here -->  ${content}
-                   </div>
+                   <div id="app">${content}</div>
+                   ${bundles}
                 </div>
-                ${scripts}
               </body>
-              `;
-    return page;
+              </html>`;
+
+    return pretty(page);
 }

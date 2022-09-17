@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 
-export default function Home() {
+const Home = () => {
     return (
         <div>
             <Helmet>
@@ -11,4 +11,6 @@ export default function Home() {
             <h1>Welcome to the page of Universal Web App</h1>
         </div>
     );
-}
+};
+
+export default Home;

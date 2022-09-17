@@ -1,26 +1,11 @@
 {
-  "presets":
-  [
-    [
-      "@babel/preset-env",
-      {
-        "targets":
-        {
-          "node": "current"
-        }
-      }
+    "presets": [
+        "@babel/preset-react", 
+        "@babel/preset-typescript", 
+        "@babel/preset-env"
     ],
-    "@babel/preset-react"
-  ],
-  "plugins": [
-    ["babel-plugin-root-import", {
-      "paths": [{
-        "rootPathPrefix": "~",
-        "rootPathSuffix": ""
-      }, {
-        "rootPathPrefix": "&",
-        "rootPathSuffix": "src/"
-      }]
-    }]
-  ]
+    "plugins": [
+        "@babel/plugin-syntax-dynamic-import",
+        "@loadable/babel-plugin"
+    ]
 }

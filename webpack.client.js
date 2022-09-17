@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
 const Dotenv = require("dotenv-webpack");
 const CompressionPlugin = require("compression-webpack-plugin");
+const LoadablePlugin = require("@loadable/webpack-plugin");
 
 const webpackConfig = require("./webpack.config");
 
@@ -17,8 +18,9 @@ module.exports = (env, argv) => {
 
     return {
         mode: modeEnv,
-        entry: ["@babel/polyfill", "./src/index.tsx"],
+        entry: ["@babel/polyfill", "./src/client.jsx"],
         output: {
+            chunkFilename: "[name].bundle.js",
             filename: watchMode ? "assets/[name].[hash].js" : "assets/[name].[chunkhash].js",
             path: buildPath,
             publicPath: "./",
@@ -39,10 +41,11 @@ module.exports = (env, argv) => {
         resolve: config.resolve,
         plugins: [
             ...config.plugins,
+            new LoadablePlugin(),
             new CompressionPlugin(),
-            new HtmlWebpackPlugin({
-                template: "./public/index.html",
-            }),
+            // new HtmlWebpackPlugin({
+            //     template: "./public/index.html",
+            // }),
             new webpack.ProvidePlugin({
                 process: "process/browser",
             }),
