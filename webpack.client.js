@@ -18,7 +18,7 @@ module.exports = (env, argv) => {
 
     return {
         mode: modeEnv,
-        entry: ["@babel/polyfill", "./src/client.jsx"],
+        entry: ["@babel/polyfill", "./src/index.tsx"],
         output: {
             chunkFilename: "[name].bundle.js",
             filename: watchMode ? "assets/[name].[hash].js" : "assets/[name].[chunkhash].js",

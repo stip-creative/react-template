@@ -1,7 +1,9 @@
+import { HelmetData } from "react-helmet";
+
 const pretty = require("pretty");
 
 // HTML-шаблон
-export default function template(helmet, content = "", bundles) {
+export default function template(helmet: HelmetData, content: string, bundles: string) {
     const page = `
               <html lang="en">
               <head>
