@@ -9,7 +9,6 @@ import { configureStoreWithState } from "./store";
 
 const state = window.PRELOADED_STATE;
 
-console.log(state);
 const store = configureStoreWithState(state);
 
 loadableReady(() => {
