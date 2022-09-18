@@ -3,7 +3,11 @@ query Home {
         edges {
             node {
                 seo {
-                    ... SeoFragment
+                    ... on Seo {
+                        metatitle
+                        metadescription
+                        shareimage
+                    }
                 }
                 first_title
                 first_sub_title
@@ -38,7 +42,15 @@ query Home {
                 teacher_carousel_description
                 teacher_carousel {
                     teacher {
-                        ... TeacherFragment
+                        ... on Teacher {
+                            teacher_title
+                            teacher_description
+                            teacher_photo
+                            subject
+                            _meta {
+                                uid
+                            }
+                        }
                     }
                 }
                 review_title
@@ -82,28 +94,55 @@ query Home {
     footer: allFooters {
         edges {
             node {
-                ... FooterFragment
+                phones {
+                    phone_number
+                }
+                email
+                address
+                social_media {
+                    type
+                    link
+                }
+                privacy_policy_doc {
+                    ... on _FileLink {
+                        url
+                    }
+                }
+                public_offer_doc {
+                	... on _FileLink {
+                        url
+                    }
+                }
             }
         }
     }
     contacForm: allContact_forms {
         edges {
             node {
-                ... ContacFormFragment
+                title
+                image
             }
         }
     }
     course: allCourses(first: 99) {
         edges {
             node {
-                ... CourseFragment
+                _meta {
+                    uid
+                }
+                course_type
+                subject
+                class
             }
         }
     }
     global: allGlobal_seos {
         edges {
             node {
-                ... GlobalFragment
+                favicon
+                metatitle
+                metadescription
+                shareimage
             }
         }
     }
