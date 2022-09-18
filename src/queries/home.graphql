@@ -1,0 +1,110 @@
+query Home {
+    home: allHomes {
+        edges {
+            node {
+                seo {
+                    ... SeoFragment
+                }
+                first_title
+                first_sub_title
+                main_image
+                about_company_title
+                company_facts {
+                    title
+                    text
+                    image
+                }
+                about_courses_title
+                about_courses_description
+                courses_group {
+                    title
+                    description
+                    image
+                }
+                course_carousel_title
+                course_carousel_description
+                courses_carousel {
+                    course {
+                        ... on Course {
+                            card_title
+                            card_description
+                            _meta {
+                                uid
+                            }
+                        }
+                    }
+                }
+                teacher_carousel_title
+                teacher_carousel_description
+                teacher_carousel {
+                    teacher {
+                        ... TeacherFragment
+                    }
+                }
+                review_title
+                review_carousel {
+                    review {
+                        ... on Review {
+                            review
+                            owner_photo
+                            owner
+                            year
+                        }
+                    }
+                }
+                dropdown {
+                    ... on Dropdown {
+                        dropdown_title
+                        dropdown_element {
+                            title
+                            text
+                        }
+                    }
+                }
+                map_title
+                map {
+                    ... on Map_without_schedule {
+                        offices {
+                            coordinates
+                            address
+                        }
+                    }
+                }
+                contact_form {
+                    ... on Contact_form {
+                        title
+                        image
+                    }
+                }
+            }
+        }
+    }
+    footer: allFooters {
+        edges {
+            node {
+                ... FooterFragment
+            }
+        }
+    }
+    contacForm: allContact_forms {
+        edges {
+            node {
+                ... ContacFormFragment
+            }
+        }
+    }
+    course: allCourses(first: 99) {
+        edges {
+            node {
+                ... CourseFragment
+            }
+        }
+    }
+    global: allGlobal_seos {
+        edges {
+            node {
+                ... GlobalFragment
+            }
+        }
+    }
+}

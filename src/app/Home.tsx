@@ -1,7 +1,14 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import { useSelector } from "react-redux";
+
+import { RootState } from "../store";
 
 const Home = () => {
+    const title = useSelector((state: RootState) => state.home.seo.metatitle);
+
+    console.log(title);
+
     return (
         <div>
             <Helmet>

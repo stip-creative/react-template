@@ -1,0 +1,9 @@
+fragment TeacherFragment on Teacher {
+    teacher_title
+    teacher_description
+    teacher_photo
+    subject
+    _meta {
+        uid
+    }
+}

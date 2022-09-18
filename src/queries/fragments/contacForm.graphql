@@ -1,0 +1,4 @@
+fragment ContacFormFragment on Contact_form {
+    title
+    image
+}

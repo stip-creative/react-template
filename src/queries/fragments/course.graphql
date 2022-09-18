@@ -1,0 +1,8 @@
+fragment CourseFragment on Course {
+    _meta {
+        uid
+    }
+    course_type
+    subject
+    class
+}

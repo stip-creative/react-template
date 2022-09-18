@@ -1,0 +1,82 @@
+query Teachers {
+    page: allStudent_resultss {
+        edges {
+            node {
+                seo {
+                    ... SeoFragment
+                }
+                title
+                description
+                results {
+                    result {
+                        ... on Student_result {
+                            name
+                            subject
+                            score
+                            year
+                            image
+                            _meta {
+                                uid
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    allContact_forms {
+        edges {
+            node {
+                title
+                image
+            }
+        }
+    }
+    allFooters {
+        edges {
+            node {
+                phones {
+                    phone_number
+                }
+                email
+                address
+                social_media {
+                    type
+                    link
+                }
+                privacy_policy_doc {
+                    ... on _FileLink {
+                        url
+                    }
+                }
+                public_offer_doc {
+                    ... on _FileLink {
+                        url
+                    }
+                }
+            }
+        }
+    }
+    allCourses(first: 99) {
+        edges {
+            node {
+                _meta {
+                    uid
+                }
+                course_type
+                subject
+                class
+            }
+        }
+    }
+    global: allGlobal_seos {
+        edges {
+            node {
+                favicon
+                metatitle
+                metadescription
+                shareimage
+            }
+        }
+    }
+}

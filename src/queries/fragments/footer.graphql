@@ -1,0 +1,21 @@
+fragment FooterFragment on Footer {
+    phones {
+        phone_number
+    }
+    email
+    address
+    social_media {
+        type
+        link
+    }
+    privacy_policy_doc {
+        ... on _FileLink {
+            url
+        }
+    }
+    public_offer_doc {
+      ... on _FileLink {
+            url
+        }
+    }
+}

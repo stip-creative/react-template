@@ -1,0 +1,6 @@
+fragment GlobalFragment on Global_seo {
+    favicon
+    metatitle
+    metadescription
+    shareimage
+}

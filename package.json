@@ -2,7 +2,6 @@
   "name": "modern-web-app",
   "version": "8.1.0",
   "description": "Best MWA example by VanishMax",
-  "main": "app.js",
   "author": "VanishMax",
   "license": "MIT",
   "scripts": {

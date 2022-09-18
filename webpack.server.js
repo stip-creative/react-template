@@ -1,5 +1,6 @@
-const nodeExternals = require("webpack-node-externals");
 const path = require("path");
+
+const nodeExternals = require("webpack-node-externals");
 
 module.exports = env => {
     return {
@@ -24,6 +25,7 @@ module.exports = env => {
             rules: [
                 {
                     test: /\.(ts|js)x?$/i,
+                    exclude: /node_modules/,
                     use: [
                         {
                             loader: "babel-loader",

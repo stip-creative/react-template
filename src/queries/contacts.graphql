@@ -1,0 +1,99 @@
+query Contacts {
+    page: allContactss {
+        edges {
+            node {
+                seo {
+                    ... on Seo {
+                        metatitle
+                        metadescription
+                        shareimage
+                    }
+                }
+                title
+                phone_title
+                phone_nubers {
+                    phone_number
+                }
+                working_hours
+                working_hours_text
+                office_address_title
+                office_address
+                email_title
+                email
+              	map {
+                    ... on Map_without_schedule {
+                        offices {
+                            coordinates
+                            address
+                        }
+                    }
+                }
+            }
+        }
+    }
+    allCourses {
+        edges {
+            node {
+                _meta {
+                    uid
+                }
+                course_type
+                subject
+                class
+            }
+        }
+    }
+    allMaps {
+        edges {
+            node {
+                offices {
+                    address
+                    coordinates
+                }
+            }
+        }
+    }
+    allContact_forms {
+        edges {
+            node {
+                title
+                image
+            }
+        }
+    }
+    allFooters {
+        edges {
+            node {
+                phones {
+                    phone_number
+                }
+                email
+                address
+                social_media {
+                    type
+                    link
+                }
+                privacy_policy_doc {
+                    ... on _FileLink {
+                        url
+                    }
+                }
+                public_offer_doc {
+                	... on _FileLink {
+                        url
+                    }
+                }
+            }
+        }
+    }
+    global: allGlobal_seos {
+        edges {
+            node {
+                favicon
+                metatitle
+                metadescription
+                shareimage
+            }
+        }
+    }
+}
