@@ -1,21 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { ICourseMeta } from "../models/ICourseMeta";
+
 interface ICourseState {
-    _meta: {
-        uid: string;
-    };
-    course_type: string;
-    subject: string;
-    class: string;
+    items: ICourseMeta[];
 }
 
 const initialState: ICourseState = {
-    _meta: {
-        uid: "",
-    },
-    course_type: "",
-    subject: "",
-    class: "",
+    items: [],
 };
 
 export const courseSlice = createSlice({

@@ -10,6 +10,8 @@ import aboutCoursesTransform from "../utils/aboutCoursesTransform";
 import courseCarouselTransform from "../utils/courseCarouselTransform";
 import reviewTransform from "../utils/reviewTransform";
 import teacherCarouselTransform from "../utils/teacherCarouselTransform";
+import { ISelecters } from "../models/ISelecters";
+import sidebarFiltersTransform from "../utils/sidebarFiltersTransform";
 
 const AsyncWelcomeBlock = loadable(() => import("../components/WelcomeBlock"));
 const AsyncFacts = loadable(() => import("../components/Facts"));
@@ -20,15 +22,20 @@ const AsyncHomeMap = loadable(() => import("../components/Map/HomeMap"));
 const AsyncContactForm = loadable(() => import("../components/ContactForm"));
 const AsyncFooter = loadable(() => import("../components/Footer"));
 const AsyncHeader = loadable(() => import("../components/Header"));
+const AsyncSidebar = loadable(() => import("../components/Sidebar"));
 
 const Home = () => {
     const homeData = useSelector((state: RootState) => state.home);
     const footerData = useSelector((state: RootState) => state.footer);
     const contactFormData = useSelector((state: RootState) => state.contacForm);
+    const coursesFormData = useSelector((state: RootState) => state.course.items);
+
+    const selecters: ISelecters = sidebarFiltersTransform(coursesFormData);
 
     return (
         <>
             <AsyncHeader />
+            <AsyncSidebar coursesMeta={coursesFormData} classes={selecters.classes} subjects={selecters.subjects} course_types={selecters.course_types} />
             <Page>
                 <AsyncWelcomeBlock
                     title={homeData?.first_title[0].text}

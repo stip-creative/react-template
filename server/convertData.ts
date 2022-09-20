@@ -3,7 +3,14 @@ const convertData = (data: any) => {
     const keys = Object.keys(data);
 
     keys.forEach(key => {
-        result[key] = data[key].edges[0]?.node;
+        const nodes = data[key].edges;
+        if (nodes.length > 1) {
+            result[key] = {
+                items: nodes,
+            };
+        } else {
+            result[key] = nodes[0]?.node;
+        }
     });
 
     return result;
