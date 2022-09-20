@@ -1,7 +1,8 @@
-import React, { FunctionComponent, useLayoutEffect, useRef } from "react";
+import React, { FunctionComponent, useRef } from "react";
 import gsap from "gsap";
 import { useDispatch } from "react-redux";
 
+import useLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 import ButtonType from "../../models/ButtonType";
 import TextType from "../../models/TextType";
 import { updateIsOpenSidebar } from "../../slices/homeSlice";

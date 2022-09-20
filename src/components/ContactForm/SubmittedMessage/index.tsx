@@ -1,6 +1,7 @@
-import React, { FunctionComponent, useLayoutEffect, useRef } from "react";
+import React, { FunctionComponent, useRef } from "react";
 import gsap from "gsap";
 
+import useLayoutEffect from "../../../hooks/useIsomorphicLayoutEffect";
 import TextType from "../../../models/TextType";
 import Text from "../../Text";
 

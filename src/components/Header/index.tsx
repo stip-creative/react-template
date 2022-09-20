@@ -1,7 +1,8 @@
-import React, { FunctionComponent, useLayoutEffect, useRef } from "react";
+import React, { FunctionComponent, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 
+import useLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 import ButtonType from "../../models/ButtonType";
 import TextType from "../../models/TextType";
 import { updateIsOpenSidebar } from "../../slices/homeSlice";
@@ -19,42 +20,42 @@ const Header: FunctionComponent = () => {
     const wrapperRef = useRef<HTMLElement>();
     const scrollBefore = useRef<number>();
 
-    // useLayoutEffect(() => {
-    //     const wrapper = wrapperRef.current;
-    //     let scroll = scrollBefore.current;
+    useLayoutEffect(() => {
+        const wrapper = wrapperRef.current;
+        let scroll = scrollBefore.current;
 
-    //     const handleScroll = () => {
-    //         const scrolled = window.scrollY;
+        const handleScroll = () => {
+            const scrolled = window.scrollY;
 
-    //         if (scroll > scrolled) {
-    //             wrapper.classList.remove(...allScrollClasser);
-    //             wrapper.classList.add("scroll-up");
-    //             scroll = scrolled;
-    //         } else {
-    //             wrapper.classList.remove(...allScrollClasser);
-    //             wrapper.classList.add("scroll-down");
-    //             scroll = scrolled;
-    //         }
-    //     };
+            if (scroll > scrolled) {
+                wrapper.classList.remove(...allScrollClasser);
+                wrapper.classList.add("scroll-up");
+                scroll = scrolled;
+            } else {
+                wrapper.classList.remove(...allScrollClasser);
+                wrapper.classList.add("scroll-down");
+                scroll = scrolled;
+            }
+        };
 
-    //     if (wrapper) {
-    //         wrapper.classList.remove(...allScrollClasser);
-    //         window.addEventListener("scroll", handleScroll);
-    //     }
+        if (wrapper) {
+            wrapper.classList.remove(...allScrollClasser);
+            window.addEventListener("scroll", handleScroll);
+        }
 
-    //     return () => {
-    //         window.removeEventListener("scroll", handleScroll);
-    //     };
-    // }, []);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     const onButtonClick = () => {
         dispatch(updateIsOpenSidebar(true));
     };
 
-    // if (isMobile) return <HeaderMobile />;
+    if (isMobile) return <HeaderMobile />;
 
     return (
-        <StyledWrapper>
+        <StyledWrapper ref={wrapperRef}>
             <StyledLink to="/">
                 <StyledLogo />
             </StyledLink>

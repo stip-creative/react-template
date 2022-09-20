@@ -20,7 +20,7 @@ export default function template(helmet: HelmetData, content: string, bundles: s
               </head>
               <body>
                 <div class="content">
-                   <div id="app">${content}</div>
+                   <div id="root">${content}</div>
                    <style id="jss-server-side">${styles}</style>
                    <script>
                         // WARNING: See the following for security issues around embedding JSON in HTML:

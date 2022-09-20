@@ -20,6 +20,6 @@ loadableReady(() => {
                 <App />
             </BrowserRouter>
         </Provider>,
-        document.querySelector("#app")
+        document.querySelector("#root")
     );
 });

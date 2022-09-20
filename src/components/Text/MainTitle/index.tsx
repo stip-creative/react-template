@@ -1,7 +1,8 @@
-import React, { FunctionComponent, useLayoutEffect, useRef } from "react";
+import React, { FunctionComponent, useRef } from "react";
 import gsap from "gsap";
 // import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import useLayoutEffect from "../../../hooks/useIsomorphicLayoutEffect";
 import { ITextProps } from "..";
 import TextType from "../../../models/TextType";
 import { mainTitle } from "../../../animationConstants/Text";

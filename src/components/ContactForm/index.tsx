@@ -1,4 +1,4 @@
-import React, { FormEvent, FunctionComponent, useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, { FormEvent, FunctionComponent, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
 
 import ButtonType from "../../models/ButtonType";
@@ -51,8 +51,6 @@ const ContactForm: FunctionComponent<IContactForm> = ({ title, image, privacyPol
     };
 
     const isValidForm = useMemo(() => (nameIsValid && phoneIsValid && checkboxIsValid) || false, [nameIsValid, phoneIsValid, checkboxIsValid]);
-
-    useLayoutEffect(() => {}, []);
 
     const clearValidateField = (name: string) => {
         switch (name) {

@@ -1,6 +1,7 @@
-import React, { FunctionComponent, useLayoutEffect, useRef } from "react";
+import React, { FunctionComponent, useRef } from "react";
 import { useSelector } from "react-redux";
 
+import useLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 import Text from "../Text";
 import TextType from "../../models/TextType";
 import { RootState } from "../../store";

@@ -1,8 +1,9 @@
-import React, { FunctionComponent, useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { FunctionComponent, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
+import useLayoutEffect from "../../../hooks/useIsomorphicLayoutEffect";
 import TextType from "../../../models/TextType";
 import { allScrollClasser } from "../../../styles/variables";
 import Text from "../../Text";

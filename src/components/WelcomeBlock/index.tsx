@@ -1,6 +1,7 @@
-import React, { FunctionComponent, useLayoutEffect, useRef } from "react";
+import React, { FunctionComponent, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import useLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 import { mainTitle, paragraph } from "../../animationConstants/Text";
 import ButtonType from "../../models/ButtonType";
 import { ITextSpan } from "../../models/ITextSpan";

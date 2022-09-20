@@ -1,9 +1,11 @@
-import { RefObject, useLayoutEffect, useRef } from "react";
+import { RefObject, useRef } from "react";
 import { isMobile } from "react-device-detect";
 
 import { ICustomScrollDomElements } from "../models/ICustomScrollDomElements";
 import { IParalaxElement } from "../models/IParalaxElement";
 import lerp from "../utils/lerp";
+
+import useLayoutEffect from "./useIsomorphicLayoutEffect";
 
 const useCustomScroll = (scrollableRef: RefObject<HTMLDivElement>) => {
     const ease = 0.1;

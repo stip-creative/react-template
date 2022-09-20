@@ -1,5 +1,6 @@
-import React, { FunctionComponent, useLayoutEffect, useRef, useState } from "react";
+import React, { FunctionComponent, useRef, useState } from "react";
 
+import useLayoutEffect from "../../../hooks/useIsomorphicLayoutEffect";
 import Text from "../../Text";
 import TextType from "../../../models/TextType";
 import { IText } from "../../../models/IText";

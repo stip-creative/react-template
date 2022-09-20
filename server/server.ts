@@ -14,9 +14,6 @@ import { configureStoreWithState } from "../src/store";
 const render = async (url: string) => {
     const data = await apollo(url);
 
-    console.log(url);
-    console.log(convertData(data));
-
     const store = configureStoreWithState(convertData(data));
     const sheet = new ServerStyleSheet();
     const statsFile = path.resolve(__dirname, "./loadable-stats.json");
