@@ -2,7 +2,6 @@ import React, { FunctionComponent, PropsWithChildren, useRef } from "react";
 import { isMobile } from "react-device-detect";
 
 import useLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
-import useCustomScroll from "../../hooks/useCustomScroll";
 import { ICustomScrollDomElements } from "../../models/ICustomScrollDomElements";
 import { IParalaxElement } from "../../models/IParalaxElement";
 import lerp from "../../utils/lerp";
@@ -106,7 +105,7 @@ const Page: FunctionComponent<PropsWithChildren<Record<never, never>>> = ({ chil
             requestAnimationFrame(() => render());
         };
 
-        if (isMobile) {
+        if (!isMobile) {
             setSize();
             init();
             setStyle();

@@ -2,37 +2,12 @@ import loadable from "@loadable/component";
 import React, { FunctionComponent, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Route, Routes, useLocation } from "react-router-dom";
-import styled from "styled-components";
 
 import PageTransitionWrapper from "../components/PageTransitionWrapper";
 import { RootState } from "../store";
-import colors, { allScrollClasser } from "../styles/variables";
+import { allScrollClasser } from "../styles/variables";
 
 const AsyncHome = loadable(() => import("../pages/Home"));
-
-export const StyledFade = styled.div`
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background-color: ${colors.white};
-    z-index: 101;
-    pointer-events: none;
-    opacity: 1;
-    transition: opacity 1s cubic-bezier(0.25, 0.25, 0, 1);
-    will-change: opacity;
-
-    &.show {
-        transition: opacity 0.4s cubic-bezier(0.25, 0.25, 0, 1);
-
-        opacity: 1;
-    }
-
-    &.hide {
-        opacity: 0;
-    }
-`;
 
 const AppRoutes: FunctionComponent = () => {
     const location = useLocation();
@@ -83,7 +58,7 @@ const AppRoutes: FunctionComponent = () => {
                     <Route path="/" element={<AsyncHome />} />
                 </Routes>
             </PageTransitionWrapper>
-            <StyledFade id="fade" />
+            <div id="fade" />
         </>
     );
 };
