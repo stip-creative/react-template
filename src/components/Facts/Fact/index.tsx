@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { IFact } from "../../../models/IFact";
 import TextType from "../../../models/TextType";
@@ -18,7 +18,7 @@ const Fact: FunctionComponent<IFactProps> = ({ title, text, image, reverse }) =>
     const circleRef = useRef();
 
     useLayoutEffect(() => {
-        gsap.registerPlugin(ScrollTrigger);
+        // gsap.registerPlugin(ScrollTrigger);
         if (wrapperRef.current) {
             gsap.from(wrapperRef.current, {
                 opacity: 0,

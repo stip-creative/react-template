@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { ITextProps } from "..";
 import TextType from "../../../models/TextType";
@@ -69,12 +69,12 @@ const MainTitle: FunctionComponent<ITextProps> = ({ type, text, spans = [], with
     if (withoutLineBreak) {
         arrayWithTagsAndBreaks = wordsWithTags.map(word =>
             word
-                .replaceAll('<span class="parent"><span></span></span>', '<span class="parent"><span> </span></span>')
-                .replaceAll('<span class="parent"><b>\n</b></span>', '<span class="parent"><span> </span></span>')
+                .replace(/<span class="parent"><span><\/span><\/span>/g, '<span class="parent"><span> </span></span>')
+                .replace(/<span class="parent"><b>\n<\/b><\/span>/g, '<span class="parent"><span> </span></span>')
         );
     } else {
         arrayWithTagsAndBreaks = wordsWithTags.map(word =>
-            word.replaceAll('<span class="parent"><span></span></span>', "</br>").replaceAll('<span class="parent"><b>\n</b></span>', "</br>")
+            word.replace(/<span class="parent"><span><\/span><\/span>/g, "</br>").replace(/<span class="parent"><b>\n<\/b><\/span>/, "</br>")
         );
     }
 
@@ -97,7 +97,7 @@ const MainTitle: FunctionComponent<ITextProps> = ({ type, text, spans = [], with
     const textWithTagsAndBreaks = textWithWrappedWords.join(" ");
 
     useLayoutEffect(() => {
-        gsap.registerPlugin(ScrollTrigger);
+        // gsap.registerPlugin(ScrollTrigger);
         if (textRef.current && !withoutAnimation) {
             gsap.from(textRef.current.querySelectorAll(".parent"), {
                 ...mainTitle.parent.vars,

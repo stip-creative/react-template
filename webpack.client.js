@@ -1,6 +1,5 @@
 const path = require("path");
 const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
 const Dotenv = require("dotenv-webpack");
 const CompressionPlugin = require("compression-webpack-plugin");
@@ -43,9 +42,6 @@ module.exports = (env, argv) => {
             ...config.plugins,
             new LoadablePlugin(),
             new CompressionPlugin(),
-            // new HtmlWebpackPlugin({
-            //     template: "./public/index.html",
-            // }),
             new webpack.ProvidePlugin({
                 process: "process/browser",
             }),

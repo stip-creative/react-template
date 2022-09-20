@@ -7,7 +7,7 @@ import StyledPageWrapper from "./style";
 const Page: FunctionComponent<PropsWithChildren<Record<never, never>>> = ({ children }) => {
     const scrollableRef = useRef<HTMLElement>();
 
-    useCustomScroll(scrollableRef);
+    // useCustomScroll(scrollableRef);
 
     return <StyledPageWrapper ref={scrollableRef}>{children}</StyledPageWrapper>;
 };

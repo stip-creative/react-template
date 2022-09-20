@@ -2,7 +2,12 @@ const path = require("path");
 
 const nodeExternals = require("webpack-node-externals");
 
-module.exports = env => {
+const webpackConfig = require("./webpack.config");
+
+module.exports = (env, argv) => {
+    const modeEnv = argv.mode || "development";
+    const config = webpackConfig(modeEnv);
+
     return {
         name: "server",
         entry: {
@@ -35,7 +40,15 @@ module.exports = env => {
                         },
                     ],
                 },
+                config.modules.style,
+                config.modules.glsl,
+                config.modules.files,
+                config.modules.fonts,
+                config.modules.graphql,
+                config.modules.svg,
+                config.modules.gltf,
             ],
         },
+        plugins: [...config.plugins],
     };
 };

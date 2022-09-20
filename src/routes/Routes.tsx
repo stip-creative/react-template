@@ -1,17 +1,38 @@
-import React, { FunctionComponent, Suspense, useEffect } from "react";
+import loadable from "@loadable/component";
+import React, { FunctionComponent, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Route, Routes, useLocation } from "react-router-dom";
+import styled from "styled-components";
 
-import { StyledFade } from "../components/Header/style";
 import PageTransitionWrapper from "../components/PageTransitionWrapper";
 import { RootState } from "../store";
-import { allScrollClasser } from "../styles/variables";
+import colors, { allScrollClasser } from "../styles/variables";
 
-const Home = React.lazy(() => import("../pages/Home"));
-const Contact = React.lazy(() => import("../pages/Contact"));
-const Course = React.lazy(() => import("../pages/Course"));
-const Results = React.lazy(() => import("../pages/Results"));
-const Teachers = React.lazy(() => import("../pages/Teachers"));
+const AsyncHome = loadable(() => import("../pages/Home"));
+
+export const StyledFade = styled.div`
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: ${colors.white};
+    z-index: 101;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 1s cubic-bezier(0.25, 0.25, 0, 1);
+    will-change: opacity;
+
+    &.show {
+        transition: opacity 0.4s cubic-bezier(0.25, 0.25, 0, 1);
+
+        opacity: 1;
+    }
+
+    &.hide {
+        opacity: 0;
+    }
+`;
 
 const AppRoutes: FunctionComponent = () => {
     const location = useLocation();
@@ -56,18 +77,14 @@ const AppRoutes: FunctionComponent = () => {
     }, [location.pathname]);
 
     return (
-        <Suspense fallback={null}>
+        <>
             <PageTransitionWrapper>
                 <Routes location={location}>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/teachers" element={<Teachers />} />
-                    <Route path="/results" element={<Results />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/course/:uid" element={<Course />} />
+                    <Route path="/" element={<AsyncHome />} />
                 </Routes>
             </PageTransitionWrapper>
             <StyledFade id="fade" />
-        </Suspense>
+        </>
     );
 };
 

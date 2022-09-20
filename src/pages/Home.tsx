@@ -1,92 +1,67 @@
-import React, { FunctionComponent, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useQuery } from "@apollo/client";
+import React from "react";
+import { useSelector } from "react-redux";
+import loadable from "@loadable/component";
 
-import homeQuery from "../queries/home.graphql";
-import SEO from "../components/Seo";
+import { RootState } from "../store";
 import Page from "../components/Page";
-import WelcomeBlock from "../components/WelcomeBlock";
 import TextType from "../models/TextType";
-import { updateLoading } from "../slices/homeSlice";
-import Facts from "../components/Facts";
 import companyFactsTransform from "../utils/companyFactsTransform";
-import AboutCourses from "../components/AboutCourses";
-import CardsSlider from "../components/CardsSlider";
 import aboutCoursesTransform from "../utils/aboutCoursesTransform";
 import courseCarouselTransform from "../utils/courseCarouselTransform";
-import teacherCarouselTransform from "../utils/teacherCarouselTransform";
-import ReviewSlider from "../components/ReviewSlider";
 import reviewTransform from "../utils/reviewTransform";
-import Dropdown from "../components/Dropdown";
-import dropdownTransform from "../utils/dropdownTransform";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import ContactForm from "../components/ContactForm";
-import Sidebar from "../components/Sidebar";
-import sidebarFiltersTransform from "../utils/sidebarFiltersTransform";
-import { ISelecters } from "../models/ISelecters";
-import { ICourseMeta } from "../models/ICourseMeta";
-import HomeMap from "../components/Map/HomeMap";
+import teacherCarouselTransform from "../utils/teacherCarouselTransform";
 
-const Home: FunctionComponent = () => {
-    const dispatch = useDispatch();
-    const { data, loading } = useQuery(homeQuery);
+const AsyncWelcomeBlock = loadable(() => import("../components/WelcomeBlock"));
+const AsyncFacts = loadable(() => import("../components/Facts"));
+const AsyncAboutCourses = loadable(() => import("../components/AboutCourses"));
+const AsyncCardsSlider = loadable(() => import("../components/CardsSlider"));
+const AsyncReviewSlider = loadable(() => import("../components/ReviewSlider"));
+const AsyncHomeMap = loadable(() => import("../components/Map/HomeMap"));
+const AsyncContactForm = loadable(() => import("../components/ContactForm"));
+const AsyncFooter = loadable(() => import("../components/Footer"));
+const AsyncHeader = loadable(() => import("../components/Header"));
 
-    useEffect(() => {
-        dispatch(updateLoading(loading));
-    }, [dispatch, loading]);
-
-    if (loading) return null;
-
-    const homeData = data?.page?.edges[0]?.node;
-    const globalSeo = data?.global?.edges[0]?.node;
-    const footerData = data?.allFooters?.edges[0]?.node;
-    const contactFormData = data?.allContact_forms?.edges[0]?.node;
-    const coursesFormData = data?.allCourses?.edges;
-    const mapItems = data?.page?.edges[0].node.map.offices;
-
-    const selecters: ISelecters = sidebarFiltersTransform(coursesFormData);
-    const coursesMeta: ICourseMeta[] = coursesFormData.map(item => item.node);
+const Home = () => {
+    const homeData = useSelector((state: RootState) => state.home);
+    const footerData = useSelector((state: RootState) => state.footer);
+    const contactFormData = useSelector((state: RootState) => state.contacForm);
 
     return (
         <>
-            <Header />
-            <Sidebar coursesMeta={coursesMeta} classes={selecters.classes} subjects={selecters.subjects} course_types={selecters.course_types} />
+            <AsyncHeader />
             <Page>
-                <SEO seo={homeData?.seo} defaultSeo={globalSeo} />
-                <WelcomeBlock
+                <AsyncWelcomeBlock
                     title={homeData?.first_title[0].text}
                     titleSpans={homeData?.first_title[0].spans}
                     subTitle={homeData?.first_sub_title[0].text}
                     subTitleSpans={homeData?.first_sub_title[0].spans}
                     image={homeData?.main_image}
                 />
-                <Facts
+                <AsyncFacts
                     title={homeData?.about_company_title[0].text}
                     titleType={TextType.h2}
                     titleSpans={homeData?.about_company_title[0].spans}
                     facts={companyFactsTransform(homeData?.company_facts)}
                 />
-                <AboutCourses
+                <AsyncAboutCourses
                     title={homeData?.about_courses_title[0].text}
                     description={homeData?.about_courses_description[0].text}
                     courses={aboutCoursesTransform(homeData?.courses_group)}
                 />
-                <CardsSlider
+                <AsyncCardsSlider
                     title={homeData?.course_carousel_title[0].text}
                     description={homeData?.course_carousel_description[0].text}
                     cards={courseCarouselTransform(homeData?.courses_carousel)}
                 />
-                <CardsSlider
+                <AsyncCardsSlider
                     title={homeData?.teacher_carousel_title[0].text}
                     description={homeData?.teacher_carousel_description[0].text}
                     cards={teacherCarouselTransform(homeData?.teacher_carousel)}
                 />
-                <ReviewSlider title={homeData?.review_title[0].text} reviwes={reviewTransform(homeData?.review_carousel)} />
-                <Dropdown data={dropdownTransform(homeData?.dropdown)} />
-                <HomeMap title={homeData.map_title[0].text} mapItems={mapItems} />
-                <ContactForm title={contactFormData.title[0]} image={contactFormData.image} privacyPolicyLink={footerData.privacy_policy_doc.url} />
-                <Footer
+                <AsyncReviewSlider title={homeData?.review_title[0].text} reviwes={reviewTransform(homeData?.review_carousel)} />
+                <AsyncHomeMap title={homeData.map_title[0].text} mapItems={homeData?.map.offices} />
+                <AsyncContactForm title={contactFormData.title[0]} image={contactFormData.image} privacyPolicyLink={footerData.privacy_policy_doc.url} />
+                <AsyncFooter
                     phones={footerData.phones}
                     email={footerData.email}
                     address={footerData.address}

@@ -10,13 +10,13 @@ import { StyledBody, StyledBodyCompact, StyledBodyLarge, StyledQuestion, StyledQ
 const Paragraph: FunctionComponent<ITextProps> = ({ type, text, withoutAnimation, withoutLineBreak }) => {
     const textRef = useRef();
 
-    const textWithBreaks = text.replaceAll("\n", " </br> ");
+    const textWithBreaks = text.replace(/\n/g, " </br> ");
 
     const words = textWithBreaks.split(" ");
 
     const textWithTags = `<span class="parent"><span class="children">${words.join(`</span></span> <span class="parent"> <span class="children">`)} </span></span>`;
 
-    const textWithTagsAndBreaks = withoutLineBreak ? textWithTags : textWithTags.replaceAll('<span class="parent"> <span class="children"></br></span></span> ', "</br>");
+    const textWithTagsAndBreaks = withoutLineBreak ? textWithTags : textWithTags.replace(/<span class="parent"> <span class="children"><\/br><\/span><\/span> /g, "</br>");
 
     const getWrapper = () => {
         switch (type) {

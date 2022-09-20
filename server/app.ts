@@ -10,7 +10,7 @@ const app = express();
 
 // Обрабатываем статичные файлы
 app.use(express.static("build"));
-app.use("/public", express.static(path.resolve(__dirname, "public")));
+app.use("/build", express.static(path.resolve(__dirname, "..", "build")));
 
 // Слушаем приложение на 3000 порте, если он не задан процессом
 const PORT: number = 8000;

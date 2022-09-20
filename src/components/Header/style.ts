@@ -45,27 +45,3 @@ export const StyledLink = styled(Link)`
         margin-left: 0rem;
     }
 `;
-
-export const StyledFade = styled.div`
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background-color: ${colors.white};
-    z-index: 101;
-    pointer-events: none;
-    opacity: 1;
-    transition: opacity 1s cubic-bezier(0.25, 0.25, 0, 1);
-    will-change: opacity;
-
-    &.show {
-        transition: opacity 0.4s cubic-bezier(0.25, 0.25, 0, 1);
-
-        opacity: 1;
-    }
-
-    &.hide {
-        opacity: 0;
-    }
-`;
