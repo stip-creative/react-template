@@ -3,7 +3,7 @@ fragment TeacherFragment on Teacher {
     teacher_description
     teacher_photo
     subject
-    _meta {
+    meta: _meta {
         uid
     }
 }

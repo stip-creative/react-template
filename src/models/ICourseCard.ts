@@ -4,7 +4,7 @@ export interface ICourseCard {
     course: {
         card_title: IText[];
         card_description: string;
-        _meta: {
+        meta: {
             uid: string;
         };
     };

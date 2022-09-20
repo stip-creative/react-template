@@ -216,7 +216,7 @@ const Sidebar: FunctionComponent<ISelecters> = ({ classes, course_types, subject
                 meta.node.class === sidebarDate.class.value && meta.node.course_type === sidebarDate.course_type.value && meta.node.subject === sidebarDate.subject.value
         );
 
-        const uid = course?.node?._meta?.uid;
+        const uid = course?.node?.meta?.uid;
 
         // eslint-disable-next-line no-underscore-dangle
         if (uid) {

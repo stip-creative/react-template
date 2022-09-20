@@ -2,7 +2,7 @@ query Course($uid: String) {
     page: allCourses(uid: $uid) {
         edges {
             node {
-                _meta {
+                meta: _meta {
                     uid
                 }
                 seo {
@@ -110,7 +110,7 @@ query Course($uid: String) {
     sidebar: allCourses(first: 99) {
         edges {
             node {
-                _meta {
+                meta: _meta {
                     uid
                 }
                 course_type

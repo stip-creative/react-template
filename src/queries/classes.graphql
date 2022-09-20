@@ -2,7 +2,7 @@ query Classes($course_type: String, $subject: String) {
     sidebar: allCourses(where: { course_type: $course_type, subject: $subject }) {
         edges {
             node {
-                _meta {
+                meta: _meta {
                     uid
                 }
                 course_type

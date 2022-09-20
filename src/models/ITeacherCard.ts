@@ -7,7 +7,7 @@ export interface ITeacherCard {
         teacher_description: string;
         teacher_photo: IImage;
         subject: string;
-        _meta: {
+        meta: {
             uid: string | null;
         };
     };

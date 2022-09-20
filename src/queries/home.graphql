@@ -32,7 +32,7 @@ query Home {
                         ... on Course {
                             card_title
                             card_description
-                            _meta {
+                            meta: _meta {
                                 uid
                             }
                         }
@@ -47,7 +47,7 @@ query Home {
                             teacher_description
                             teacher_photo
                             subject
-                            _meta {
+                            meta: _meta {
                                 uid
                             }
                         }
@@ -127,7 +127,7 @@ query Home {
     course: allCourses(first: 99) {
         edges {
             node {
-                _meta {
+                meta: _meta {
                     uid
                 }
                 course_type

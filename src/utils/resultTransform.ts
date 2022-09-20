@@ -9,7 +9,7 @@ interface IData {
         subject: string;
         year: number;
         image: IImage;
-        _meta: {
+        meta: {
             uid: string;
         };
     };
@@ -18,7 +18,7 @@ interface IData {
 const resultTransform = (data: IData[]): ICard[] => {
     return data.map(element => ({
         // eslint-disable-next-line no-underscore-dangle
-        uid: element.result._meta.uid,
+        uid: element.result.meta.uid,
         widthLink: false,
         title: element.result.name[0],
         subTitle: element.result.subject,

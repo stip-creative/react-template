@@ -34,7 +34,7 @@ query Contacts {
     allCourses {
         edges {
             node {
-                _meta {
+                meta: _meta {
                     uid
                 }
                 course_type

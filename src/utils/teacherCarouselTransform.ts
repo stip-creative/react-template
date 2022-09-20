@@ -8,7 +8,7 @@ interface IData {
         teacher_title: IText[];
         teacher_photo: IImage;
         subject: string;
-        _meta: {
+        meta: {
             uid: string;
         };
     };
@@ -17,7 +17,7 @@ interface IData {
 const teacherCarouselTransform = (data: IData[]): ICard[] => {
     return data.map(element => ({
         // eslint-disable-next-line no-underscore-dangle
-        uid: element.teacher._meta.uid,
+        uid: element.teacher.meta.uid,
         widthLink: false,
         title: element.teacher.teacher_title[0],
         subTitle: element.teacher.subject,

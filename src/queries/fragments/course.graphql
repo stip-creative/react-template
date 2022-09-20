@@ -1,5 +1,5 @@
 fragment CourseFragment on Course {
-    _meta {
+    meta: _meta {
         uid
     }
     course_type

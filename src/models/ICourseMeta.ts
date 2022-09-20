@@ -1,6 +1,6 @@
 export interface ICourseMeta {
     node: {
-        _meta: {
+        meta: {
             uid: string;
         };
         course_type: string | null;

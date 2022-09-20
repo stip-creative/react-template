@@ -15,7 +15,7 @@ query Teachers {
                             score
                             year
                             image
-                            _meta {
+                            meta: _meta {
                                 uid
                             }
                         }
@@ -60,7 +60,7 @@ query Teachers {
     allCourses(first: 99) {
         edges {
             node {
-                _meta {
+                meta: _meta {
                     uid
                 }
                 course_type
