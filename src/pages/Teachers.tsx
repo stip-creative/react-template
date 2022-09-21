@@ -1,50 +1,35 @@
-import React, { FunctionComponent, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useQuery } from "@apollo/client";
+import React, { FunctionComponent } from "react";
+import { useSelector } from "react-redux";
+import loadable from "@loadable/component";
 
-import teachersQuery from "../queries/teachers.graphql";
-import SEO from "../components/Seo";
 import Page from "../components/Page";
-import { updateLoading } from "../slices/homeSlice";
-import Footer from "../components/Footer";
-import TeachersList from "../components/TeachersList";
 import teacherCarouselTransform from "../utils/teacherCarouselTransform";
-import Header from "../components/Header";
-import ContactForm from "../components/ContactForm";
-import Sidebar from "../components/Sidebar";
-import { ICourseMeta } from "../models/ICourseMeta";
 import { ISelecters } from "../models/ISelecters";
 import sidebarFiltersTransform from "../utils/sidebarFiltersTransform";
+import { RootState } from "../store";
+
+const AsyncHeader = loadable(() => import("../components/Header"));
+const AsyncSidebar = loadable(() => import("../components/Sidebar"));
+const AsyncFooter = loadable(() => import("../components/Footer"));
+const AsyncTeachersList = loadable(() => import("../components/TeachersList"));
+const AsyncContactForm = loadable(() => import("../components/ContactForm"));
 
 const Teachers: FunctionComponent = () => {
-    const dispatch = useDispatch();
-    const { data, loading } = useQuery(teachersQuery);
+    const teachersData = useSelector((state: RootState) => state.teachers);
+    const footerData = useSelector((state: RootState) => state.footer);
+    const contactFormData = useSelector((state: RootState) => state.contacForm);
+    const coursesFormData = useSelector((state: RootState) => state.course.items);
 
-    useEffect(() => {
-        dispatch(updateLoading(loading));
-    }, [dispatch, loading]);
-
-    if (loading) return null;
-
-    const teachersData = data?.page?.edges[0]?.node;
-    const footerData = data?.allFooters?.edges[0]?.node;
-    const globalSeo = data?.global?.edges[0]?.node;
-    const contactFormData = data?.allContact_forms?.edges[0]?.node;
-    const coursesFormData = data?.allCourses?.edges;
-
-    const coursesMeta: ICourseMeta[] = coursesFormData.map(item => item.node);
     const selecters: ISelecters = sidebarFiltersTransform(coursesFormData);
 
     return (
         <>
-            <Header />
-            <Sidebar coursesMeta={coursesMeta} classes={selecters.classes} subjects={selecters.subjects} course_types={selecters.course_types} />
-
+            <AsyncHeader />
+            <AsyncSidebar coursesMeta={coursesFormData} classes={selecters.classes} subjects={selecters.subjects} course_types={selecters.course_types} />
             <Page>
-                <SEO seo={teachersData?.seo} defaultSeo={globalSeo} />
-                <TeachersList title={teachersData.title[0]} description={teachersData.description[0]} teachers={teacherCarouselTransform(teachersData?.teachers)} />
-                <ContactForm title={contactFormData.title[0]} image={contactFormData.image} privacyPolicyLink={footerData.privacy_policy_doc.url} />
-                <Footer
+                <AsyncTeachersList title={teachersData.title[0]} description={teachersData.description[0]} teachers={teacherCarouselTransform(teachersData?.teachers)} />
+                <AsyncContactForm title={contactFormData.title[0]} image={contactFormData.image} privacyPolicyLink={footerData.privacy_policy_doc.url} />
+                <AsyncFooter
                     phones={footerData.phones}
                     email={footerData.email}
                     address={footerData.address}

@@ -8,6 +8,9 @@ import { RootState } from "../store";
 import { allScrollClasser } from "../styles/variables";
 
 const AsyncHome = loadable(() => import("../pages/Home"));
+const AsyncTeachers = loadable(() => import("../pages/Teachers"));
+const AsyncResults = loadable(() => import("../pages/Results"));
+const AsyncContact = loadable(() => import("../pages/Contact"));
 
 const AppRoutes: FunctionComponent = () => {
     const location = useLocation();
@@ -56,6 +59,9 @@ const AppRoutes: FunctionComponent = () => {
             <PageTransitionWrapper>
                 <Routes location={location}>
                     <Route path="/" element={<AsyncHome />} />
+                    <Route path="/teachers" element={<AsyncTeachers />} />
+                    <Route path="/results" element={<AsyncResults />} />
+                    <Route path="/contact" element={<AsyncContact />} />
                 </Routes>
             </PageTransitionWrapper>
             <div id="fade" />

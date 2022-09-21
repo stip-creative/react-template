@@ -20,11 +20,11 @@ const client = new ApolloClient({
 });
 
 const queries = {
-    "/contact": "../src/queries/contacts.graphql",
+    "/contact": "../src/queries/home.graphql",
     "/course": "../src/queries/course.graphql",
     "/": "../src/queries/home.graphql",
-    "/results": "../src/queries/results.graphql",
-    "/teachers": "../src/queries/teachers.graphql",
+    "/results": "../src/queries/home.graphql",
+    "/teachers": "../src/queries/home.graphql",
 };
 
 function isCourse(url: string) {

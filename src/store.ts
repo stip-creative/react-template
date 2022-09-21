@@ -7,6 +7,9 @@ import footerReducer from "./slices/footerSlice";
 import contacFormReducer from "./slices/contacFormSlice";
 import globalReducer from "./slices/globalSlice";
 import courseReducer from "./slices/courseSlice";
+import teachersReducer from "./slices/teachersSlice";
+import resultsReducer from "./slices/resultsSlice";
+import contactsReducer from "./slices/contactsSlice";
 
 const rootReducer = combineReducers({
     home: homeReducer,
@@ -15,6 +18,9 @@ const rootReducer = combineReducers({
     contacForm: contacFormReducer,
     global: globalReducer,
     course: courseReducer,
+    teachers: teachersReducer,
+    results: resultsReducer,
+    contacts: contactsReducer,
 });
 
 export const configureStoreWithState = (preloadedState = {}) => {

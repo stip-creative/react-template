@@ -1,9 +1,13 @@
 query Teachers {
-    page: allStudent_resultss {
+    results: allStudent_resultss {
         edges {
             node {
                 seo {
-                    ... SeoFragment
+                    ... on Seo {
+                        metatitle
+                        metadescription
+                        shareimage
+                    }
                 }
                 title
                 description

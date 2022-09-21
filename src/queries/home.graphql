@@ -91,6 +91,95 @@ query Home {
             }
         }
     }
+    teachers: allTeacherss {
+        edges {
+            node {
+                seo {
+                    ... on Seo {
+                        metatitle
+                        metadescription
+                        shareimage
+                    }
+                }
+                title
+                description
+                teachers {
+                    teacher {
+                        ... on Teacher {
+                            teacher_title
+                            teacher_description
+                            teacher_photo
+                            subject
+                            meta: _meta {
+                                uid
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    results: allStudent_resultss {
+        edges {
+            node {
+                seo {
+                    ... on Seo {
+                        metatitle
+                        metadescription
+                        shareimage
+                    }
+                }
+                title
+                description
+                results {
+                    result {
+                        ... on Student_result {
+                            name
+                            subject
+                            score
+                            year
+                            image
+                            meta: _meta {
+                                uid
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    contacts: allContactss {
+        edges {
+            node {
+                seo {
+                    ... on Seo {
+                        metatitle
+                        metadescription
+                        shareimage
+                    }
+                }
+                title
+                phone_title
+                phone_nubers {
+                    phone_number
+                }
+                working_hours
+                working_hours_text
+                office_address_title
+                office_address
+                email_title
+                email
+              	map {
+                    ... on Map_without_schedule {
+                        offices {
+                            coordinates
+                            address
+                        }
+                    }
+                }
+            }
+        }
+    }
     footer: allFooters {
         edges {
             node {
