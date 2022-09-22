@@ -1,6 +1,5 @@
 import React, { FunctionComponent, useEffect, useRef, useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import gsap from "gsap";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
@@ -15,6 +14,7 @@ import { updateIsOpenSidebar } from "../../slices/homeSlice";
 import { ISelectItem } from "../../models/ISelectItem";
 import { ICourseMeta } from "../../models/ICourseMeta";
 import sidebarFiltersTransform from "../../utils/sidebarFiltersTransform";
+import useSidebbarAnimation from "../../hooks/useSidebbarAnimation";
 
 import SelectMenu from "./Select";
 import { StyledBg, StyledClose, StyledSidebarWrapper } from "./style";
@@ -38,7 +38,6 @@ const Sidebar: FunctionComponent<ISelecters> = ({ classes, course_types, subject
     const isOpenSidebar = useSelector((state: RootState) => state.home.isOpenSidebar);
 
     const bgRef = useRef();
-    const [tl, setTl] = useState<gsap.core.Timeline>();
     const [sidebarDate, setSidebarDate] = useState<ISidebarDate>({
         course_type: {
             value: null,
@@ -75,20 +74,12 @@ const Sidebar: FunctionComponent<ISelecters> = ({ classes, course_types, subject
     };
 
     useEffect(() => {
-        const timeline = gsap.timeline();
         const bg = bgRef.current;
         const wrapper = wrapperRef.current;
 
         if (bg && wrapper) {
             bg.addEventListener("wheel", onBgScroll, { passive: false });
             wrapper.addEventListener("wheel", onBgScroll, { passive: false });
-        }
-
-        if (timeline) {
-            timeline.to(wrapperRef.current, { x: "100%", opacity: 0 });
-            timeline.to(bg, { opacity: 0, pointerEvents: "none" });
-
-            setTl(timeline);
         }
 
         return () => {
@@ -98,17 +89,6 @@ const Sidebar: FunctionComponent<ISelecters> = ({ classes, course_types, subject
             }
         };
     }, []);
-
-    useEffect(() => {
-        if (!tl) return null;
-        if (isOpenSidebar) {
-            tl.reverse();
-        } else {
-            tl.play();
-        }
-
-        return null;
-    }, [isOpenSidebar, tl]);
 
     useEffect(() => {
         if (isSubjectsDisabled) {
@@ -230,10 +210,12 @@ const Sidebar: FunctionComponent<ISelecters> = ({ classes, course_types, subject
         dispatch(updateIsOpenSidebar(!isOpenSidebar));
     };
 
+    useSidebbarAnimation(isOpenSidebar);
+
     return (
         <>
-            <StyledBg ref={bgRef} />
-            <StyledSidebarWrapper ref={wrapperRef}>
+            <StyledBg id="sidebar-bg" ref={bgRef} />
+            <StyledSidebarWrapper id="wrapper-bg" ref={wrapperRef}>
                 <StyledClose onClick={onCloseClick} />
                 <Text text="Какой курс вы ищете?" type={TextType.h3} spans={[]} withoutAnimation />
                 <SelectMenu

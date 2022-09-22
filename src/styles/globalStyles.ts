@@ -21,7 +21,7 @@ const GlobalStyles = createGlobalStyle`
         z-index: 101;
         pointer-events: none;
         opacity: 1;
-        transition: opacity 0.3s cubic-bezier(0.2, 0, 0.38, 0.9);
+        transition: opacity 0.2s cubic-bezier(0.2, 0, 0.38, 0.9);
         will-change: opacity;
 
         &.show {

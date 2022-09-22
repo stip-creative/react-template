@@ -12,6 +12,14 @@ export const StyledBg = styled.div`
     background: rgba(0, 0, 0, 0.25);
     touch-action: pan-y;
     z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.25, 0, 1);
+
+    &.show {
+        pointer-events: auto;
+        opacity: 1;
+    }
 `;
 
 export const StyledSidebarWrapper = styled.div`
@@ -22,6 +30,9 @@ export const StyledSidebarWrapper = styled.div`
     right: 0;
     top: 0;
     z-index: 101;
+    opacity: 0;
+    transform: translate(100%, 0px);
+    transition: all 0.4s cubic-bezier(0.25, 0.25, 0, 1);
 
     padding: 8.18rem 4.09rem;
 
@@ -31,6 +42,11 @@ export const StyledSidebarWrapper = styled.div`
 
     button {
         max-width: 15.22rem;
+    }
+
+    &.show {
+        opacity: 1;
+        transform: translate(0px, 0px);
     }
 
     @media (max-width: 640px) {
