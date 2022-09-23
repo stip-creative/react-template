@@ -1,11 +1,7 @@
 import React, { FunctionComponent, useRef } from "react";
-import { useSelector } from "react-redux";
 
-import useLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 import Text from "../Text";
 import TextType from "../../models/TextType";
-import { RootState } from "../../store";
-import { mainTitle, paragraph } from "../../animationConstants/Text";
 import { IMapItem } from "../../models/IMapItem";
 import MapBlock from "../Map";
 import SocialNetworksType from "../../models/SocialNetworksType";
@@ -55,7 +51,6 @@ const Contact: FunctionComponent<IContact> = ({
     email,
 }) => {
     const wrapperRef = useRef<HTMLElement>();
-    const timeLine = useSelector((state: RootState) => state.animations.welcomeTimeLine);
 
     const socialIcons = {
         [SocialNetworksType.inst]: <StyledContactInst />,
@@ -63,56 +58,29 @@ const Contact: FunctionComponent<IContact> = ({
         [SocialNetworksType.youtube]: <StyledContactYouTube />,
     };
 
-    useLayoutEffect(() => {
-        if (wrapperRef.current) {
-            timeLine
-                .from(
-                    wrapperRef.current.querySelectorAll(".description h3 .parent"),
-                    {
-                        ...mainTitle.parent.vars,
-                    },
-                    1.8
-                )
-                .from(
-                    wrapperRef.current.querySelectorAll(".description h3 .parent > span, .description h3 .parent > b"),
-                    {
-                        ...mainTitle.children.vars,
-                    },
-                    1.8
-                )
-                .from(
-                    wrapperRef.current.querySelectorAll(".parahraph .children"),
-                    {
-                        ...paragraph.vars,
-                    },
-                    1.8
-                );
-        }
-    }, [timeLine]);
-
     return (
         <StyledWrapper ref={wrapperRef}>
             <StyledBlock className="description">
-                <Text text={title} type={TextType.h3} spans={[]} withoutAnimation />
+                <Text text={title} type={TextType.h3} spans={[]} />
                 <StyledInfoBlock>
-                    <Text text={phoneTitle} type={TextType.body} spans={[]} withoutAnimation />
+                    <Text text={phoneTitle} type={TextType.body} spans={[]} />
                     {phoneNubers.map(item => (
                         <StyledPhoneLink key={item.phone_number} href={`tel:${item.phone_number}`}>
-                            <Text text={item.phone_number} type={TextType.body} spans={[]} withoutAnimation />
+                            <Text text={item.phone_number} type={TextType.body} spans={[]} />
                         </StyledPhoneLink>
                     ))}
                 </StyledInfoBlock>
                 <StyledInfoBlock>
-                    <Text text={workingHours} type={TextType.body} spans={[]} withoutAnimation />
-                    <Text text={workingHoursText} type={TextType.body} spans={[]} withoutAnimation />
+                    <Text text={workingHours} type={TextType.body} spans={[]} />
+                    <Text text={workingHoursText} type={TextType.body} spans={[]} />
                 </StyledInfoBlock>
                 <StyledInfoBlock>
-                    <Text text={officeAddressTitle} type={TextType.body} spans={[]} withoutAnimation />
-                    <Text text={officeAddress} type={TextType.body} spans={[]} withoutAnimation />
+                    <Text text={officeAddressTitle} type={TextType.body} spans={[]} />
+                    <Text text={officeAddress} type={TextType.body} spans={[]} />
                 </StyledInfoBlock>
                 <StyledInfoBlock>
-                    <Text text={emailTitle} type={TextType.body} spans={[]} withoutAnimation />
-                    <Text text={email} type={TextType.body} spans={[]} withoutAnimation />
+                    <Text text={emailTitle} type={TextType.body} spans={[]} />
+                    <Text text={email} type={TextType.body} spans={[]} />
                 </StyledInfoBlock>
             </StyledBlock>
             <StyledBlock>

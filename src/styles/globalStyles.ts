@@ -24,10 +24,6 @@ const GlobalStyles = createGlobalStyle`
         transition: opacity 0.2s cubic-bezier(0.2, 0, 0.38, 0.9);
         will-change: opacity;
 
-        &.show {
-            opacity: 1;
-        }
-
         &.hide {
             opacity: 0;
         }
@@ -76,6 +72,12 @@ const GlobalStyles = createGlobalStyle`
                     transform: translate(0%, 0%) !important;
                 }
             }
+        }
+    }
+
+    .paralax {
+        &.done {
+            opacity: 1 !important;
         }
     }
 `;

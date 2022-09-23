@@ -12,63 +12,19 @@ import { StyledReview, StyledFigure, StyledImg, StyledOwner, StyledOwnerDescript
 const Review: FunctionComponent<IReview> = ({ review, owner, owner_photo, year }) => {
     const wrapperRef = useRef();
 
-    useLayoutEffect(() => {
-        if (wrapperRef.current) {
-            const timeline = gsap.timeline({
-                scrollTrigger: {
-                    start: "top-=200 bottom",
-                    trigger: wrapperRef.current,
-                },
-            });
-
-            timeline
-                .from(
-                    wrapperRef.current.querySelectorAll(".children"),
-                    {
-                        ...paragraph.vars,
-                    },
-                    1
-                )
-                .from(
-                    wrapperRef.current.querySelectorAll(".captions"),
-                    {
-                        duration: 0.25,
-                        opacity: 0,
-                    },
-                    1
-                )
-                .from(
-                    wrapperRef.current.querySelectorAll("svg"),
-                    {
-                        duration: 0.25,
-                        opacity: 0,
-                    },
-                    1
-                )
-                .from(
-                    wrapperRef.current.querySelectorAll("figure"),
-                    {
-                        duration: 0.25,
-                        opacity: 0,
-                    },
-                    1
-                );
-        }
-    }, []);
-
     return (
         <StyledReview ref={wrapperRef}>
             <StyledReviewWrapper>
                 <StyledQuotes />
-                <Text text={review.text} type={TextType.quote} spans={[]} withoutAnimation />
+                <Text text={review.text} type={TextType.quote} spans={[]} />
             </StyledReviewWrapper>
             <StyledOwner>
                 <StyledFigure>
                     <StyledImg src={owner_photo.url} alt={owner_photo.alt} />
                 </StyledFigure>
                 <StyledOwnerDescription>
-                    <Text text={owner} type={TextType.bodyLarge} spans={[]} withoutAnimation />
-                    <Text text={`${year} год`} type={TextType.bodyXSmall} spans={[]} withoutAnimation />
+                    <Text text={owner} type={TextType.bodyLarge} spans={[]} />
+                    <Text text={`${year} год`} type={TextType.bodyXSmall} spans={[]} />
                 </StyledOwnerDescription>
             </StyledOwner>
         </StyledReview>

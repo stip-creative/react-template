@@ -34,7 +34,7 @@ const captionAnimation = (ref: RefObject<HTMLElement>, tl: gsap.core.Timeline) =
     });
 };
 
-const elementInView = (el: HTMLElement, offset = 0) => {
+export const elementInView = (el: HTMLElement, offset = 0) => {
     const elementTop = el.getBoundingClientRect().top;
 
     return elementTop <= (window.innerHeight || document.documentElement.clientHeight) - offset;

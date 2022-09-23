@@ -29,7 +29,6 @@ const AppRoutes: FunctionComponent = () => {
 
         if (fade) {
             fade.classList.remove("hide");
-            fade.classList.add("show");
         }
     };
 
@@ -37,16 +36,15 @@ const AppRoutes: FunctionComponent = () => {
         const fade = document.getElementById("fade");
 
         if (fade) {
-            fade.classList.remove("show");
             fade.classList.add("hide");
         }
     };
 
     useEffect(() => {
         timeLine.add(showFade, 0);
-        timeLine.add(handlerInitScrollPosition, 0.4);
-        timeLine.add(handlerAfterAnimation, 0.4);
-        timeLine.add(hideFade, 1.8);
+        // timeLine.add(handlerInitScrollPosition, 0.4);
+        // timeLine.add(handlerAfterAnimation, 0.4);
+        timeLine.add(hideFade, 0.6);
     }, [timeLine]);
 
     useEffect(() => {
