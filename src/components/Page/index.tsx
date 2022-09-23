@@ -2,6 +2,7 @@ import loadable from "@loadable/component";
 import React, { FunctionComponent, PropsWithChildren, useRef } from "react";
 import { isMobile } from "react-device-detect";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 import useLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 import { ICustomScrollDomElements } from "../../models/ICustomScrollDomElements";
@@ -17,6 +18,8 @@ const AsyncHeader = loadable(() => import("../Header"));
 const AsyncSidebar = loadable(() => import("../Sidebar"));
 
 const Page: FunctionComponent<PropsWithChildren<Record<never, never>>> = ({ children }) => {
+    const location = useLocation();
+
     const coursesFormData = useSelector((state: RootState) => state.course.items);
 
     const selecters: ISelecters = sidebarFiltersTransform(coursesFormData);

@@ -1,15 +1,13 @@
 import React, { FunctionComponent, useRef } from "react";
-import gsap from "gsap";
 import { useDispatch } from "react-redux";
 
-import useLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 import ButtonType from "../../models/ButtonType";
 import TextType from "../../models/TextType";
 import { updateIsOpenSidebar } from "../../slices/homeSlice";
 import { ICourse } from "../../models/ICourse";
 import Button from "../Button";
 import Text from "../Text";
-import { paragraph } from "../../animationConstants/Text";
+import useImageScrollTrigger from "../../hooks/useImageScrollTrigger";
 
 import { StyledAboutCoursesFullViewWrapper, StyledFigure, StyledFourth, StyledImg, StyledTextWrapper, StyledThird, StyledTwoThird, StyledWrapper } from "./style";
 
@@ -21,43 +19,17 @@ export interface IAboutCourses {
 
 const AboutCourses: FunctionComponent<IAboutCourses> = ({ title, description, courses }) => {
     const dispatch = useDispatch();
-    const wrapperRef = useRef();
-
-    useLayoutEffect(() => {
-        if (wrapperRef.current) {
-            const fourthTimeline = gsap.timeline({
-                scrollTrigger: {
-                    start: "top bottom",
-                    trigger: wrapperRef.current,
-                },
-            });
-
-            fourthTimeline
-                .from(
-                    wrapperRef.current.querySelectorAll(".fourth .parahraph .children"),
-                    {
-                        ...paragraph.vars,
-                    },
-                    1
-                )
-                .from(
-                    wrapperRef.current.querySelectorAll(".fourth .figure"),
-                    {
-                        opacity: 0,
-                        stagger: 0.1,
-                    },
-                    1
-                );
-        }
-    }, []);
+    const imgRef = useRef();
 
     const onButtonClick = () => {
         dispatch(updateIsOpenSidebar(true));
     };
 
+    useImageScrollTrigger(imgRef);
+
     return (
         <StyledAboutCoursesFullViewWrapper>
-            <StyledWrapper ref={wrapperRef}>
+            <StyledWrapper>
                 <StyledThird>
                     <div>
                         <Text text={title} type={TextType.h3} spans={[]} withoutAnimation withoutLineBreak />
@@ -69,11 +41,11 @@ const AboutCourses: FunctionComponent<IAboutCourses> = ({ title, description, co
                     {courses.map(course => (
                         <StyledFourth className="fourth" key={course.title.text}>
                             <StyledFigure className="figure">
-                                <StyledImg src={course.image.url} alt={course.image.alt} />
+                                <StyledImg ref={imgRef} src={course.image.url} alt={course.image.alt} />
                             </StyledFigure>
                             <StyledTextWrapper>
-                                <Text type={TextType.h4} text={course.title.text} withoutAnimation />
-                                <Text type={TextType.bodyCompact} text={course.description.text} withoutAnimation />
+                                <Text type={TextType.h4} text={course.title.text} />
+                                <Text type={TextType.bodyCompact} text={course.description.text} />
                             </StyledTextWrapper>
                         </StyledFourth>
                     ))}

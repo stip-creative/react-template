@@ -22,7 +22,7 @@ export const paragraph = {
     vars: {
         y: "100%",
         stagger: 0.05,
-        duration: 0.5,
-        delay: 0.4,
+        duration: 0.3,
+        delay: 0.6,
     },
 };

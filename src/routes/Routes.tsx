@@ -16,10 +16,6 @@ const AppRoutes: FunctionComponent = () => {
     const location = useLocation();
     const timeLine = useSelector((state: RootState) => state.animations.welcomeTimeLine);
 
-    const handlerInitScrollPosition = () => {
-        window.scrollTo(0, 0);
-    };
-
     const handlerAfterAnimation = () => {
         document.getElementsByTagName("header")[0]?.classList.remove(...allScrollClasser);
     };
