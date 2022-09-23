@@ -1,14 +1,26 @@
+import loadable from "@loadable/component";
 import React, { FunctionComponent, PropsWithChildren, useRef } from "react";
 import { isMobile } from "react-device-detect";
+import { useSelector } from "react-redux";
 
 import useLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 import { ICustomScrollDomElements } from "../../models/ICustomScrollDomElements";
 import { IParalaxElement } from "../../models/IParalaxElement";
+import { ISelecters } from "../../models/ISelecters";
+import { RootState } from "../../store";
 import lerp from "../../utils/lerp";
+import sidebarFiltersTransform from "../../utils/sidebarFiltersTransform";
 
 import StyledPageWrapper from "./style";
 
+const AsyncHeader = loadable(() => import("../Header"));
+const AsyncSidebar = loadable(() => import("../Sidebar"));
+
 const Page: FunctionComponent<PropsWithChildren<Record<never, never>>> = ({ children }) => {
+    const coursesFormData = useSelector((state: RootState) => state.course.items);
+
+    const selecters: ISelecters = sidebarFiltersTransform(coursesFormData);
+
     const scrollableRef = useRef<HTMLElement>();
     const ease = 0.1;
     const docScrollRef = useRef<number>(0);
@@ -114,7 +126,13 @@ const Page: FunctionComponent<PropsWithChildren<Record<never, never>>> = ({ chil
         requestAnimationFrame(() => render());
     }, [scrollableRef]);
 
-    return <StyledPageWrapper ref={scrollableRef}>{children}</StyledPageWrapper>;
+    return (
+        <StyledPageWrapper ref={scrollableRef}>
+            <AsyncHeader />
+            <AsyncSidebar coursesMeta={coursesFormData} classes={selecters.classes} subjects={selecters.subjects} course_types={selecters.course_types} />
+            {children}
+        </StyledPageWrapper>
+    );
 };
 
 export default Page;
