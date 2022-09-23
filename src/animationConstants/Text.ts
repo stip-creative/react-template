@@ -5,10 +5,6 @@ export const mainTitle = {
             y: "-100%",
             stagger: 0.05,
         },
-        scrollTrigger: (trigger: HTMLElement) => ({
-            start: "center bottom",
-            trigger,
-        }),
     },
     children: {
         vars: {
@@ -17,10 +13,6 @@ export const mainTitle = {
             y: "140%",
             stagger: 0.05,
         },
-        scrollTrigger: (trigger: HTMLElement) => ({
-            start: "center bottom",
-            trigger,
-        }),
     },
 };
 
@@ -29,10 +21,6 @@ export const paragraph = {
         y: "100%",
         stagger: 0.01,
         duration: 0.3,
-        delay: 0,
+        delay: 0.5,
     },
-    scrollTrigger: (trigger: HTMLElement) => ({
-        start: "center bottom",
-        trigger,
-    }),
 };

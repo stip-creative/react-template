@@ -1,9 +1,8 @@
 import React, { FunctionComponent, useRef } from "react";
-import gsap from "gsap";
 
-import useLayoutEffect from "../../../hooks/useIsomorphicLayoutEffect";
 import { ITextProps } from "..";
 import TextType from "../../../models/TextType";
+import useTextScrollTrigger, { TextAnimationTypes } from "../../../hooks/useTextScrollTrigger";
 
 import { StyledBodySmall, StyledBodyXSmall, StyledButtons, StyledButtonsSmall } from "./style";
 
@@ -27,19 +26,7 @@ const Caption: FunctionComponent<ITextProps> = ({ type, text, withoutAnimation }
 
     const Wrapper = getWrapper();
 
-    useLayoutEffect(() => {
-        if (textRef.current && !withoutAnimation) {
-            gsap.from(textRef.current, {
-                opacity: 0,
-                stagger: 0.01,
-                delay: 0.2,
-                scrollTrigger: {
-                    start: "top center",
-                    trigger: textRef.current,
-                },
-            });
-        }
-    }, [withoutAnimation]);
+    useTextScrollTrigger(textRef, withoutAnimation, TextAnimationTypes.caption);
 
     return (
         <Wrapper className="captions notranslate" ref={textRef}>

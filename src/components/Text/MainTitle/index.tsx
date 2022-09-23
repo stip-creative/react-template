@@ -1,11 +1,8 @@
 import React, { FunctionComponent, useRef } from "react";
-import gsap from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import useLayoutEffect from "../../../hooks/useIsomorphicLayoutEffect";
 import { ITextProps } from "..";
 import TextType from "../../../models/TextType";
-import { mainTitle } from "../../../animationConstants/Text";
+import useTextScrollTrigger, { TextAnimationTypes } from "../../../hooks/useTextScrollTrigger";
 
 import { StyledH1, StyledH2, StyledH3 } from "./style";
 
@@ -97,19 +94,7 @@ const MainTitle: FunctionComponent<ITextProps> = ({ type, text, spans = [], with
     });
     const textWithTagsAndBreaks = textWithWrappedWords.join(" ");
 
-    useLayoutEffect(() => {
-        // gsap.registerPlugin(ScrollTrigger);
-        if (textRef.current && !withoutAnimation) {
-            gsap.from(textRef.current.querySelectorAll(".parent"), {
-                ...mainTitle.parent.vars,
-                scrollTrigger: mainTitle.children.scrollTrigger(textRef.current),
-            });
-            gsap.from(textRef.current.querySelectorAll(".parent > span, .parent > b"), {
-                ...mainTitle.children.vars,
-                scrollTrigger: mainTitle.children.scrollTrigger(textRef.current),
-            });
-        }
-    }, [withoutAnimation]);
+    useTextScrollTrigger(textRef, withoutAnimation, TextAnimationTypes.title);
 
     if (type === TextType.h2) {
         return <StyledH2 className="main-title" ref={textRef} dangerouslySetInnerHTML={{ __html: textWithTagsAndBreaks }} />;

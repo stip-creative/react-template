@@ -1,10 +1,8 @@
 import React, { FunctionComponent, useRef } from "react";
-import gsap from "gsap";
 
-import useLayoutEffect from "../../../hooks/useIsomorphicLayoutEffect";
 import { ITextProps } from "..";
 import TextType from "../../../models/TextType";
-import { paragraph } from "../../../animationConstants/Text";
+import useTextScrollTrigger, { TextAnimationTypes } from "../../../hooks/useTextScrollTrigger";
 
 import { StyledBody, StyledBodyCompact, StyledBodyLarge, StyledQuestion, StyledQuote, StyledH4 } from "./style";
 
@@ -40,14 +38,7 @@ const Paragraph: FunctionComponent<ITextProps> = ({ type, text, withoutAnimation
 
     const Wrapper = getWrapper();
 
-    useLayoutEffect(() => {
-        if (textRef.current && !withoutAnimation) {
-            gsap.from(textRef.current.querySelectorAll(".children"), {
-                ...paragraph.vars,
-                scrollTrigger: paragraph.scrollTrigger(textRef.current),
-            });
-        }
-    }, [withoutAnimation]);
+    useTextScrollTrigger(textRef, withoutAnimation, TextAnimationTypes.paragraph);
 
     return <Wrapper translate="no" className="parahraph notranslate" ref={textRef} dangerouslySetInnerHTML={{ __html: textWithTagsAndBreaks }} />;
 };

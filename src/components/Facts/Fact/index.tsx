@@ -18,48 +18,14 @@ const Fact: FunctionComponent<IFactProps> = ({ title, text, image, reverse }) =>
     const wrapperRef = useRef();
     const circleRef = useRef();
 
-    useLayoutEffect(() => {
-        // gsap.registerPlugin(ScrollTrigger);
-        if (wrapperRef.current) {
-            gsap.from(wrapperRef.current, {
-                opacity: 0,
-                stagger: 0.1,
-                scrollTrigger: {
-                    start: "center bottom",
-                    trigger: wrapperRef.current,
-                },
-            });
-            gsap.from(circleRef.current, {
-                opacity: 0,
-                stagger: 0.1,
-                scrollTrigger: {
-                    start: "center bottom",
-                    trigger: wrapperRef.current,
-                },
-            });
-            gsap.from(wrapperRef.current.querySelectorAll(".main-title .parent"), {
-                ...mainTitle.parent.vars,
-                scrollTrigger: mainTitle.children.scrollTrigger(wrapperRef.current),
-            });
-            gsap.from(wrapperRef.current.querySelectorAll(".main-title .parent > span, .main-title .parent > b"), {
-                ...mainTitle.children.vars,
-                scrollTrigger: mainTitle.children.scrollTrigger(wrapperRef.current),
-            });
-            gsap.from(wrapperRef.current.querySelectorAll(".parahraph .children"), {
-                ...paragraph.vars,
-                scrollTrigger: paragraph.scrollTrigger(wrapperRef.current),
-            });
-        }
-    }, []);
-
     return (
         <StyledWrapper ref={wrapperRef} reverse={reverse}>
             <StyledFigure>
                 <StyledImg className="paralax" src={image.url} alt={image.alt} />
             </StyledFigure>
             <StyledDescriptionWrapper>
-                <Text type={TextType.h3} text={title.text} withoutAnimation />
-                <Text type={TextType.body} text={text.text} withoutAnimation withoutLineBreak />
+                <Text type={TextType.h3} text={title.text} />
+                <Text type={TextType.body} text={text.text} withoutLineBreak />
                 <StyledCircle ref={circleRef} />
             </StyledDescriptionWrapper>
         </StyledWrapper>
