@@ -19,7 +19,7 @@ export interface IButton {
     onClick?: () => void;
 }
 
-const Button: FunctionComponent<IButton> = ({ type, text, withoutAnimation, isSmall, withBurger, withArrow, onClick }) => {
+const Button: FunctionComponent<IButton> = ({ type, text, withoutAnimation = false, isSmall = false, withBurger = false, withArrow = false, onClick = () => {} }) => {
     const btnRef = useRef<HTMLButtonElement>();
     const allHoverClasser = ["in-right", "in-left", "out-right", "out-left"];
 

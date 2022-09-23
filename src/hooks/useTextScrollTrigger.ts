@@ -1,4 +1,5 @@
 import gsap from "gsap";
+import { RefObject } from "react";
 
 import { mainTitle, paragraph as paragraphAnimationVars } from "../animationConstants/Text";
 
@@ -10,7 +11,7 @@ export enum TextAnimationTypes {
     caption = "caption",
 }
 
-const titleAnimation = (ref: any, tl: gsap.core.Timeline) => {
+const titleAnimation = (ref: RefObject<HTMLElement>, tl: gsap.core.Timeline) => {
     tl.from(ref.current.querySelectorAll(".parent"), {
         ...mainTitle.parent.vars,
     });
@@ -19,13 +20,13 @@ const titleAnimation = (ref: any, tl: gsap.core.Timeline) => {
     });
 };
 
-const paragraphAnimation = (ref: any, tl: gsap.core.Timeline) => {
+const paragraphAnimation = (ref: RefObject<HTMLElement>, tl: gsap.core.Timeline) => {
     tl.from(ref.current.querySelectorAll(".children"), {
         ...paragraphAnimationVars.vars,
     });
 };
 
-const captionAnimation = (ref: any, tl: gsap.core.Timeline) => {
+const captionAnimation = (ref: RefObject<HTMLElement>, tl: gsap.core.Timeline) => {
     tl.from(ref.current, {
         opacity: 0,
         stagger: 0.01,
@@ -39,19 +40,20 @@ const elementInView = (el: HTMLElement, offset = 0) => {
     return elementTop <= (window.innerHeight || document.documentElement.clientHeight) - offset;
 };
 
-const handleScrollAnimation = (el: any, tl: gsap.core.Timeline) => {
-    if (elementInView(el, window.innerHeight * 0.2)) {
-        console.log(el);
-        console.log(tl.getChildren());
+const handleScrollAnimation = (el: HTMLElement, tl: gsap.core.Timeline) => {
+    if (elementInView(el, window.innerHeight * -0.1)) {
         tl.play();
     }
 };
 
-const useTextScrollTrigger = (ref: any, withoutAnimation: boolean, animationType: TextAnimationTypes) => {
+const useTextScrollTrigger = (ref: RefObject<HTMLElement>, withoutAnimation: boolean, animationType: TextAnimationTypes) => {
     useLayoutEffect(() => {
         if (!withoutAnimation) {
             const tl = gsap.timeline({
                 paused: true,
+                onComplete: () => {
+                    ref.current.classList.add("done");
+                },
             });
 
             switch (animationType) {

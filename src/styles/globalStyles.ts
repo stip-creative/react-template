@@ -32,6 +32,52 @@ const GlobalStyles = createGlobalStyle`
             opacity: 0;
         }
     }
+
+    .main-title {
+        &.done {
+            .parent {
+                translate: none !important;
+                rotate: none !important;
+                scale: none !important;
+                transform: translate(0%, 0%) !important;
+
+                span,
+                b {
+                    translate: none !important;
+                    rotate: none !important;
+                    scale: none !important;
+                    transform: translate(0%, 0%) !important;
+                    opacity: 1 !important;
+                }
+            }
+        }
+    }
+
+    .parahraph {
+        &.done {
+            .parent {
+                span {
+                    translate: none !important;
+                    rotate: none !important;
+                    scale: none !important;
+                    transform: translate(0%, 0%) !important;
+                }
+            }
+        }
+    }
+
+    .parahraph {
+        &.done {
+            .parent {
+                span {
+                    translate: none !important;
+                    rotate: none !important;
+                    scale: none !important;
+                    transform: translate(0%, 0%) !important;
+                }
+            }
+        }
+    }
 `;
 
 export default GlobalStyles;

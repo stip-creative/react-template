@@ -1,16 +1,12 @@
 import React, { FunctionComponent, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import useLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
-import { mainTitle, paragraph } from "../../animationConstants/Text";
 import ButtonType from "../../models/ButtonType";
 import { ITextSpan } from "../../models/ITextSpan";
 import TextType from "../../models/TextType";
 import Button from "../Button";
 import FullViewWrapper from "../FullViewWrapper";
 import Text from "../Text";
-import ButtonAnimation from "../../animationConstants/Button";
-import { RootState } from "../../store";
 import { updateIsOpenSidebar } from "../../slices/homeSlice";
 import { IImage } from "../../models/IImage";
 
@@ -28,41 +24,6 @@ const WelcomeBlock: FunctionComponent<IWelcomeBlock> = ({ title, titleSpans, sub
     const dispatch = useDispatch();
 
     const wrapperRef = useRef();
-    const timeLine = useSelector((state: RootState) => state.animations.welcomeTimeLine);
-
-    useLayoutEffect(() => {
-        if (wrapperRef.current) {
-            timeLine
-                .from(
-                    wrapperRef.current.querySelectorAll(".main-title .parent"),
-                    {
-                        ...mainTitle.parent.vars,
-                    },
-                    1.8
-                )
-                .from(
-                    wrapperRef.current.querySelectorAll(".main-title .parent > span, .main-title  .parent > b"),
-                    {
-                        ...mainTitle.children.vars,
-                    },
-                    1.8
-                )
-                .from(
-                    wrapperRef.current.querySelectorAll(".parahraph .children"),
-                    {
-                        ...paragraph.vars,
-                    },
-                    2.6
-                )
-                .from(
-                    wrapperRef.current.querySelectorAll("button"),
-                    {
-                        ...ButtonAnimation.vars,
-                    },
-                    2.6
-                );
-        }
-    }, [timeLine]);
 
     const onSecondaryButtonClick = () => {
         const form = document.querySelector("#form .form-wrapper");
@@ -82,9 +43,9 @@ const WelcomeBlock: FunctionComponent<IWelcomeBlock> = ({ title, titleSpans, sub
         <FullViewWrapper>
             <StyledWrapper ref={wrapperRef}>
                 <StyledHalf>
-                    <Text text={title} type={TextType.h1} spans={titleSpans} withoutAnimation />
+                    <Text text={title} type={TextType.h1} spans={titleSpans} />
                     <StyledSubTitleWrapper>
-                        <Text text={subTitle} type={TextType.body} spans={subTitleSpans} withoutAnimation />
+                        <Text text={subTitle} type={TextType.body} spans={subTitleSpans} />
                     </StyledSubTitleWrapper>
                     <StyledButtonWrapper>
                         <Button onClick={onButtonClick} text="Подобрать курс" type={ButtonType.primary} withoutAnimation />
