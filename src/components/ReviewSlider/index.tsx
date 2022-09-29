@@ -30,4 +30,8 @@ const ReviewSlider: FunctionComponent<IReviewSlider> = ({ title, reviwes }) => {
     );
 };
 
+ReviewSlider.defaultProps = {
+    reviwes: [],
+};
+
 export default ReviewSlider;

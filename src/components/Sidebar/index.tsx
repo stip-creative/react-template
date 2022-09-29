@@ -66,7 +66,7 @@ const Sidebar: FunctionComponent<ISelecters> = ({ classes, course_types, subject
         );
     }, [sidebarDate]);
 
-    const onBgScroll = (e: any): boolean => {
+    const onBgScroll = (e: Event): boolean => {
         e.preventDefault();
         e.stopPropagation();
 

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import ISeo from "../models/ISeo";
 
+import ISeo from "../models/ISeo";
 import { ITeacherCard } from "../models/ITeacherCard";
 import { IText } from "../models/IText";
 

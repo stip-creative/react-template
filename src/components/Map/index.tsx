@@ -46,4 +46,8 @@ const MapBlock: FunctionComponent<IMapBlockProps> = ({ mapItems, onClick }) => {
     );
 };
 
+MapBlock.defaultProps = {
+    onClick: () => {},
+};
+
 export default MapBlock;

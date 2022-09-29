@@ -39,4 +39,10 @@ const Text: FunctionComponent<ITextProps> = ({ type, text, spans = [], withoutAn
     }
 };
 
+Text.defaultProps = {
+    spans: [],
+    withoutAnimation: false,
+    withoutLineBreak: false,
+};
+
 export default Text;

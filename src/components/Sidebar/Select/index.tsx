@@ -77,4 +77,12 @@ const SelectMenu: FunctionComponent<IContactFormSelectProps> = ({ title, placeho
     );
 };
 
+SelectMenu.defaultProps = {
+    defaultValue: {
+        label: "",
+        value: "",
+    },
+    isTopPlacement: false,
+};
+
 export default SelectMenu;

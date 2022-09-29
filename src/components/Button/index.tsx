@@ -81,4 +81,12 @@ const Button: FunctionComponent<IButton> = ({ type, text, withoutAnimation = fal
     );
 };
 
+Button.defaultProps = {
+    withoutAnimation: false,
+    isSmall: false,
+    withBurger: false,
+    withArrow: false,
+    onClick: () => {},
+};
+
 export default Button;
