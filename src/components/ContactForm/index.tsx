@@ -165,7 +165,7 @@ const ContactForm: FunctionComponent<IContactForm> = ({ title, image, privacyPol
     return (
         <StyledWrapper id="form">
             <StyledFormFigure>
-                <StyledImg className="paralax test" src={image.url} alt={image.alt} />
+                <StyledImg className="parallax test" src={image.url} alt={image.alt} />
             </StyledFormFigure>
             {!submitted && (
                 <StyledFormWrapper className="form-wrapper" ref={wrapperRef}>

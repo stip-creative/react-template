@@ -75,10 +75,14 @@ const GlobalStyles = createGlobalStyle`
         }
     }
 
-    .paralax {
+    .parallax {
         &.done {
             opacity: 1 !important;
         }
+    }
+
+    .parallax {
+        transition: transform 0.3s cubic-bezier(0.03, 0.15, 0.16, 0.95);
     }
 `;
 

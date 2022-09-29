@@ -16,6 +16,10 @@ const AppRoutes: FunctionComponent = () => {
     const location = useLocation();
     const timeLine = useSelector((state: RootState) => state.animations.welcomeTimeLine);
 
+    const handlerInitScrollPosition = () => {
+        window.scrollTo(0, 0);
+    };
+
     const handlerAfterAnimation = () => {
         document.getElementsByTagName("header")[0]?.classList.remove(...allScrollClasser);
     };
@@ -38,8 +42,8 @@ const AppRoutes: FunctionComponent = () => {
 
     useEffect(() => {
         timeLine.add(showFade, 0);
-        // timeLine.add(handlerInitScrollPosition, 0.4);
-        // timeLine.add(handlerAfterAnimation, 0.4);
+        timeLine.add(handlerInitScrollPosition, 0.3);
+        timeLine.add(handlerAfterAnimation, 0.3);
         timeLine.add(hideFade, 0.6);
     }, [timeLine]);
 

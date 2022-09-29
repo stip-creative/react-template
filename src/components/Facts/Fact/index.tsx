@@ -19,7 +19,7 @@ const Fact: FunctionComponent<IFactProps> = ({ title, text, image, reverse }) =>
     return (
         <StyledWrapper reverse={reverse}>
             <StyledFigure>
-                <StyledImg ref={imgRef} className="paralax" src={image.url} alt={image.alt} />
+                <StyledImg ref={imgRef} className="parallax" src={image.url} alt={image.alt} />
             </StyledFigure>
             <StyledDescriptionWrapper>
                 <Text type={TextType.h3} text={title.text} />

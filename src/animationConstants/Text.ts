@@ -1,7 +1,7 @@
 export const mainTitle = {
     parent: {
         vars: {
-            duration: 0.5,
+            duration: 0.4,
             y: "-100%",
             stagger: 0.03,
             delay: 0,
@@ -9,7 +9,7 @@ export const mainTitle = {
     },
     children: {
         vars: {
-            duration: 0.5,
+            duration: 0.4,
             opacity: 0,
             y: "140%",
             stagger: 0.05,
@@ -21,7 +21,7 @@ export const mainTitle = {
 export const paragraph = {
     vars: {
         y: "100%",
-        stagger: 0.05,
+        stagger: 0.01,
         duration: 0.3,
         delay: 0.6,
     },
