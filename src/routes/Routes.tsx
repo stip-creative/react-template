@@ -11,6 +11,7 @@ const AsyncHome = loadable(() => import("../pages/Home"));
 const AsyncTeachers = loadable(() => import("../pages/Teachers"));
 const AsyncResults = loadable(() => import("../pages/Results"));
 const AsyncContact = loadable(() => import("../pages/Contact"));
+const AsyncCourse = loadable(() => import("../pages/Course"));
 
 const AppRoutes: FunctionComponent = () => {
     const location = useLocation();
@@ -60,6 +61,7 @@ const AppRoutes: FunctionComponent = () => {
                     <Route path="/teachers" element={<AsyncTeachers />} />
                     <Route path="/results" element={<AsyncResults />} />
                     <Route path="/contact" element={<AsyncContact />} />
+                    <Route path="/course/:uid" element={<AsyncCourse />} />
                 </Routes>
             </PageTransitionWrapper>
             <div id="fade" />

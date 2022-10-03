@@ -9,7 +9,9 @@ import stateRoutes from "./stateRoutes";
 const app = express();
 
 // Обрабатываем статичные файлы
+app.use("/course", express.static("build"));
 app.use(express.static("build"));
+app.use("/course", express.static(path.resolve(__dirname, "..", "build")));
 app.use("/build", express.static(path.resolve(__dirname, "..", "build")));
 
 // Слушаем приложение на 3000 порте, если он не задан процессом

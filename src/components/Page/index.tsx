@@ -9,7 +9,6 @@ import sidebarFiltersTransform from "../../utils/sidebarFiltersTransform";
 
 import StyledPageWrapper from "./style";
 
-const AsyncHeader = loadable(() => import("../Header"));
 const AsyncSidebar = loadable(() => import("../Sidebar"));
 
 const Page: FunctionComponent<PropsWithChildren<Record<never, never>>> = ({ children }) => {
@@ -21,7 +20,6 @@ const Page: FunctionComponent<PropsWithChildren<Record<never, never>>> = ({ chil
 
     return (
         <StyledPageWrapper>
-            <AsyncHeader />
             <AsyncSidebar coursesMeta={coursesFormData} classes={selecters.classes} subjects={selecters.subjects} course_types={selecters.course_types} />
             {children}
         </StyledPageWrapper>

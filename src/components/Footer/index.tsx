@@ -7,6 +7,7 @@ import Button from "../Button";
 import ButtonType from "../../models/ButtonType";
 import SocialNetworksType from "../../models/SocialNetworksType";
 import { updateIsOpenSidebar } from "../../slices/homeSlice";
+import { IPhone } from "../../models/IPhone";
 
 import {
     StyledInfoWrapper,
@@ -28,9 +29,7 @@ import {
 } from "./style";
 
 export interface IFooter {
-    phones: {
-        phone_number: string;
-    }[];
+    phones: IPhone[];
     email: string;
     address: string;
     social_media: {

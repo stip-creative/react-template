@@ -35,20 +35,9 @@ async function query(url: string) {
     let gqlQuery;
     let variables = {};
 
-    if (url.indexOf("course") > 0) {
-        gqlQuery = await loadDocuments(path.resolve(__dirname, queries["/course"]), {
-            loaders: [new GraphQLFileLoader()],
-        });
-        const array = url.split("/");
-
-        variables = {
-            uid: array[array.length - 1],
-        };
-    } else {
-        gqlQuery = await loadDocuments(path.resolve(__dirname, queries[url]), {
-            loaders: [new GraphQLFileLoader()],
-        });
-    }
+    gqlQuery = await loadDocuments(path.resolve(__dirname, queries["/"]), {
+        loaders: [new GraphQLFileLoader()],
+    });
 
     try {
         const result = await client.query({

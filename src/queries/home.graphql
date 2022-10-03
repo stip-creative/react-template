@@ -235,4 +235,87 @@ query Home {
             }
         }
     }
+    coursesPages: allCourses(first: 99) {
+        edges {
+            node {
+                meta: _meta {
+                    uid
+                }
+                seo {
+                    ... on Seo {
+                        metatitle
+                        metadescription
+                        shareimage
+                    }
+                }
+                title
+                sub_title
+                main_image
+                about_company_title
+                company_facts {
+                    title
+                    text
+                    image
+                }
+                teacher_carousel_title
+                teacher_carousel_description
+                teacher_carousel {
+                    teacher {
+                        ... on Teacher {
+                            teacher_title
+                            teacher_description
+                            teacher_photo
+                            subject
+                            meta: _meta {
+                                uid
+                            }
+                        }
+                    }
+                }
+                review_title
+                review_carousel {
+                    review {
+                        ... on Review {
+                            review
+                            owner_photo
+                            owner
+                            year
+                        }
+                    }
+                }
+                dropdown {
+                    ... on Dropdown {
+                        dropdown_title
+                        dropdown_element {
+                            title            
+                            text
+                        }
+                    }
+                }
+                map_title
+                map {
+                    ... on Map {
+                        offices {
+                            address
+                            coordinates
+                            office_schedule {
+                                ... on Office_schedule {
+                                    week {
+                                        day_of_week
+                                        time
+                                    }
+                                }
+                            }
+                        }   
+                    }
+                }
+                cost_of_education_title
+                cost_of_education_slogan
+                cost_of_education_price
+                cost_of_education_price_subtitle
+                cost_of_education_discount
+                cost_of_education_discount_subtitle
+            }
+        }
+    }
 }

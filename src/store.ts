@@ -10,6 +10,7 @@ import courseReducer from "./slices/courseSlice";
 import teachersReducer from "./slices/teachersSlice";
 import resultsReducer from "./slices/resultsSlice";
 import contactsReducer from "./slices/contactsSlice";
+import coursesPagesReducer from "./slices/coursesPages";
 
 const rootReducer = combineReducers({
     home: homeReducer,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
     teachers: teachersReducer,
     results: resultsReducer,
     contacts: contactsReducer,
+    coursesPages: coursesPagesReducer,
 });
 
 export const configureStoreWithState = (preloadedState = {}) => {
