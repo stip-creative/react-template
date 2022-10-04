@@ -72,4 +72,5 @@ export const StyledClose = styled(Close)`
     top: 0.68rem;
     right: 1.81rem;
     cursor: pointer;
+    pointer-events: auto;
 `;

@@ -40,6 +40,7 @@ export const StyledLinkWrapper = styled.div`
 export const StyledLink = styled(Link)`
     text-decoration: none;
     margin-right: 2.045rem;
+    pointer-events: auto;
 
     &:last-child {
         margin-left: 0rem;

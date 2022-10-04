@@ -10,4 +10,14 @@ const StyledPageWrapper = styled.main`
     will-change: transform;
 `;
 
+export const StyledFrame = styled.div`
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+    pointer-events: none;
+`;
+
 export default StyledPageWrapper;

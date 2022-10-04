@@ -25,6 +25,8 @@ export const StyledButton = styled.button<{
     align-content: center;
     justify-content: ${({ withSvg }) => (withSvg ? "space-between" : "center")};
 
+    pointer-events: auto;
+
     @keyframes in-right {
         0% {
             transform: translate(100%, 0px);

@@ -7,9 +7,10 @@ import { ISelecters } from "../../models/ISelecters";
 import { RootState } from "../../store";
 import sidebarFiltersTransform from "../../utils/sidebarFiltersTransform";
 
-import StyledPageWrapper from "./style";
+import StyledPageWrapper, { StyledFrame } from "./style";
 
 const AsyncSidebar = loadable(() => import("../Sidebar"));
+const AsyncHeader = loadable(() => import("../Header"));
 
 const Page: FunctionComponent<PropsWithChildren<Record<never, never>>> = ({ children }) => {
     const coursesFormData = useSelector((state: RootState) => state.course.items);
@@ -19,10 +20,13 @@ const Page: FunctionComponent<PropsWithChildren<Record<never, never>>> = ({ chil
     useParallax();
 
     return (
-        <StyledPageWrapper>
-            <AsyncSidebar coursesMeta={coursesFormData} classes={selecters.classes} subjects={selecters.subjects} course_types={selecters.course_types} />
-            {children}
-        </StyledPageWrapper>
+        <>
+            <StyledFrame>
+                <AsyncHeader />
+                <AsyncSidebar coursesMeta={coursesFormData} classes={selecters.classes} subjects={selecters.subjects} course_types={selecters.course_types} />
+            </StyledFrame>
+            <StyledPageWrapper>{children}</StyledPageWrapper>
+        </>
     );
 };
 
