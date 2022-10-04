@@ -44,7 +44,7 @@ const AppRoutes: FunctionComponent = () => {
     useEffect(() => {
         timeLine.add(showFade, 0);
         timeLine.add(handlerInitScrollPosition, 0.25);
-        timeLine.add(handlerAfterAnimation, 0.3);
+        timeLine.add(handlerAfterAnimation, 0.35);
         timeLine.add(hideFade, 0.6);
     }, [timeLine]);
 
